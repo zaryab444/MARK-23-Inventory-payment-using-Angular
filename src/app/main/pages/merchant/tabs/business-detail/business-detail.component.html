@@ -1,0 +1,113 @@
+<section class="businessDetail">
+
+    <form fxLayout="column" fxLayoutAlign="start"
+    name="form" [formGroup]="businessDetailForm">
+   
+        <div fxLayout.sm="row" fxLayout.gt-sm="row" fxLayout="column" fxLayoutAlign="space-between stretch" fxLayoutAlign.sm="space-between center" fxLayoutAlign.gt-sm="space-between center" fxFlex="1 0 auto">
+            <mat-form-field appearance="outline" fxFlex.gt-sm="33" fxFlex.sm="33" [ngClass.sm]="'pr-4'" [ngClass.gt-sm]="'pr-4'">
+                <mat-label>DBA - Statement Descriptor</mat-label>
+                <input matInput formControlName="Descriptor" >
+            </mat-form-field>
+            <mat-form-field appearance="outline" fxFlex.gt-sm="34" fxFlex.sm="34" [ngClass.sm]="['pr-4', 'pl-4']" [ngClass.gt-sm]="['pr-4', 'pl-4']">
+                <mat-label>Tax ID </mat-label>
+                <input matInput formControlName="TaxIDNo" nospace >
+                
+            </mat-form-field>
+            <mat-form-field appearance="outline" fxFlex.gt-sm="33" fxFlex.sm="33" [ngClass.sm]="'pl-4'" [ngClass.gt-sm]="'pl-4'">
+                <mat-label>Business Type (e.g. LLC)</mat-label>
+                <mat-select formControlName="BusinessType" required >
+                    <mat-option [value]="'company'">Company</mat-option>
+                    <mat-option [value]="'individual'">Individual</mat-option>
+                </mat-select>
+                <mat-error>Business Type (e.g. LLC) is required!</mat-error>
+            </mat-form-field>
+        </div>
+
+        <div fxLayout.sm="row" fxLayout.gt-sm="row" fxLayout="column" fxLayoutAlign="space-between stretch" fxLayoutAlign.sm="space-between center" fxLayoutAlign.gt-sm="space-between center" fxFlex="1 0 auto">
+            <mat-form-field appearance="outline" fxFlex.gt-sm="33" fxFlex.sm="33" [ngClass.sm]="'pr-4'" [ngClass.gt-sm]="'pr-4'">
+                <mat-label>Business Phone </mat-label>
+                <input mask="(000) 000-0000" matInput required formControlName="BusinessPhone" >
+                <mat-error>Business Phone is required!</mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline" fxFlex.gt-sm="34" fxFlex.sm="34" [ngClass.sm]="['pr-4', 'pl-4']" [ngClass.gt-sm]="['pr-4', 'pl-4']">
+                <mat-label>Years in Business </mat-label>
+                <input matInput formControlName="YearsInBusiness" numberOnly>
+            </mat-form-field>
+            <mat-form-field appearance="outline" fxFlex.gt-sm="33" fxFlex.sm="33" [ngClass.sm]="'pl-4'" [ngClass.gt-sm]="'pl-4'">
+                <mat-label> Website</mat-label>
+                <input matInput formControlName="WebSite" nospace required>
+                <mat-error>Website is required!</mat-error>
+            </mat-form-field>
+        </div>
+
+        <div fxLayout.sm="row" fxLayout.gt-sm="row" fxLayout="column" fxLayoutAlign="space-between stretch" fxLayoutAlign.sm="space-between center" fxLayoutAlign.gt-sm="space-between center" fxFlex="1 0 auto">
+            <mat-form-field appearance="outline" fxFlex.gt-sm="50" fxFlex.sm="50" [ngClass.sm]="'pr-4'" [ngClass.gt-sm]="'pr-4'">
+                <mat-label>Currently Accept Credit Cards</mat-label>
+                <mat-select formControlName="AcceptCreditCards" required>
+                    <mat-option [value]="true">Yes</mat-option>
+                    <mat-option [value]="false">No</mat-option>
+                </mat-select>
+                <mat-error>Credit Cards is required!</mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" fxFlex.gt-sm="50" fxFlex.sm="50" [ngClass.sm]="'pl-4'" [ngClass.gt-sm]="'pl-4'">
+                <mat-label>Fax</mat-label>
+                <input matInput formControlName="Fax" numberOnly >
+            </mat-form-field>
+        </div>
+
+        <div fxLayout.sm="row" fxLayout.gt-sm="row" fxLayout="column" fxLayoutAlign="space-between stretch" fxLayoutAlign.sm="space-between center" fxLayoutAlign.gt-sm="space-between center" fxFlex="1 0 auto">
+            <mat-form-field appearance="outline" fxFlex.gt-sm="50" fxFlex.sm="50" [ngClass.sm]="'pr-4'" [ngClass.gt-sm]="'pr-4'">
+                <mat-label>Street Address</mat-label>
+                <textarea matInput formControlName="BusinessAddress" ></textarea>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" fxFlex.gt-sm="50" fxFlex.sm="50" [ngClass.sm]="'pl-4'" [ngClass.gt-sm]="'pl-4'">
+                <mat-label>Street Address Line 2</mat-label>
+                <textarea matInput formControlName="BusinessAddress1" ></textarea>
+            </mat-form-field>
+        </div>
+
+        <div fxLayout.sm="row" fxLayout.gt-sm="row" fxLayout="column" fxLayoutAlign="space-between stretch" fxLayoutAlign.sm="space-between center" fxLayoutAlign.gt-sm="space-between center" fxFlex="1 0 auto">
+            <mat-form-field appearance="outline" fxFlex.gt-sm="33" fxFlex.sm="33" [ngClass.sm]="'pr-4'" [ngClass.gt-sm]="'pr-4'">
+                <mat-label> City</mat-label>
+                <input matInput formControlName="BusinessCity" >
+               
+            </mat-form-field>
+            <mat-form-field appearance="outline" fxFlex.gt-sm="34" fxFlex.sm="34" [ngClass.sm]="['pr-4', 'pl-4']" [ngClass.gt-sm]="['pr-4', 'pl-4']">
+                <mat-label>State</mat-label>
+                <mat-select formControlName="BusinessState">
+                    <mat-option [value]="item.abbreviation" *ngFor="let item of locationObj.states">{{item.name}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field appearance="outline" fxFlex.gt-sm="33" fxFlex.sm="33" [ngClass.sm]="'pl-4'" [ngClass.gt-sm]="'pl-4'">
+                <mat-label>Zip / Postal Code</mat-label>
+                <input matInput formControlName="BusinessZip" numberOnly [maxlength]="validatorObj.zipMaxLength">
+                <mat-error *ngIf="businessDetailForm.get('BusinessZip').hasError('maxlength')">
+                    Postal Code should have maximun length of 
+                    {{globalConfig?.validator?.zipMaxLength}} 
+                </mat-error>
+            </mat-form-field>
+        </div>
+
+        <div fxLayout.sm="row" fxLayoutAlign.sm="center center" fxLayout.gt-sm="row" fxLayoutAlign.gt-sm="center center" fxLayout="column" fxLayoutAlign="space-between stretch">
+            <button mat-raised-button matStepperPrevious class="my-4 accent-alpha-bg" [ngClass.sm]="'mr-4'" [ngClass.gt-sm]="'mr-4'"
+            aria-label="Previous">
+            Previous
+            </button>
+            <button mat-raised-button matStepperNext class="my-4" [ngClass.sm]="'ml-4'" [ngClass.gt-sm]="'ml-4'" color="accent" 
+                aria-label="Next" [disabled]="businessDetailForm.invalid">
+            Next
+            </button>
+            <button mat-raised-button 
+            *ngIf="businessDetail && idparam"
+            (click)="saveAndexit()"
+             class="ml-8"color="accent" 
+            [disabled]="businessDetailForm.invalid"
+            aria-label="Save & Exit">
+            Save & Exit
+        </button>
+        </div>
+
+  </form>
+</section>

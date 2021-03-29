@@ -1,0 +1,84 @@
+<section class="transactionList w-100-p">
+    <section fxLayout="row" fxLayoutAlign="space-between center">
+        <h2>Transactions</h2>
+        <div class="searchheaders cursor-pointer">
+            <div [matMenuTriggerFor]="childComponentMenu?.menu">
+              <button mat-icon-button >
+                      <mat-icon>search</mat-icon>
+              </button>
+              <span>Search Transactions</span>
+            </div>
+            <app-advanced-search [page]="'transactionPage'" [data]="transactionSearch" (submitForm)="searchTrans($event)"  #childComponentMenu="menuInOtherComponent" ></app-advanced-search>
+          </div>
+    </section>
+    <hr />
+    <section class="transactionGrid" fxLayout="column" fxLayoutAlign="space-between stretch" fxLayout.gt-sm="row"
+        fxLayoutAlign.gt-sm="start start">
+
+        <!-- Approved Transaction -->
+        <div class="fuse-card auto-width" fxFlex="100" fxFlex.gt-sm="33" [ngClass.gt-sm]="'mb-0 mr-32'"
+            [ngClass.lt-sm]="'mb-4'" [ngClass.sm]="'mb-4'">
+            <div class="px-8 py-16" fxLayout="column" fxLayoutAlign="center center">
+                <div class="h3 secondary-text">Approved</div>
+                <div class="font-size-36 font-weight-500 line-height-1 mt-8">
+                    {{transactionType.Approved || 0 | currency}}
+                </div>
+            </div>
+        </div>
+        <!-- / Approved Transaction -->
+
+        <!-- Refunds Transactions -->
+        <div class="fuse-card auto-width" fxFlex="100" fxFlex.gt-sm="34" [ngClass.gt-sm]="'mb-0 mr-32'"
+            [ngClass.lt-sm]="'mb-4'" [ngClass.sm]="'mb-4'">
+            <div class="px-8 py-16" fxLayout="column" fxLayoutAlign="center center">
+                <div class="h3 secondary-text">Refunds</div>
+                <div class="font-size-36 font-weight-500 line-height-1 mt-8">
+                    {{transactionType.Refunds || 0 | currency}}
+
+                </div>
+            </div>
+        </div>
+        <!-- / Refunds Transactions -->
+
+        <!-- Declined Transactions -->
+        <div class="fuse-card auto-width" fxFlex="100" fxFlex.gt-sm="33">
+            <div class="px-8 py-16" fxLayout="column" fxLayoutAlign="center center">
+                <div class="h3 secondary-text">Declined</div>
+                <div class="font-size-36 font-weight-500 line-height-1 mt-8">
+                    {{transactionType.Declined || 0 | currency}}
+                </div>
+            </div>
+        </div>
+        <!-- / Declined Transactions -->
+
+    </section>
+    <!-- Date Range Section -->
+    <section class="mt-20" fxLayout="row" fxLayoutAlign="end center">
+        <!-- <mat-icon class = "export-Icon"  (click)= "exportFile('pdf')" [svgIcon]="'exportpdf'" [matTooltip]= "'Export to PDF'"></mat-icon> 
+        <mat-icon  class = "export-Icon"  (click)= "exportFile('csv')" [svgIcon]="'exportexcel'" [matTooltip]= "'Export to CSV'"></mat-icon>  -->
+          <form [formGroup]="dateRangeForm" >
+            <mat-form-field appearance="outline">
+                <mat-label>Enter a date range</mat-label>
+                <mat-date-range-input [rangePicker]="picker" >
+                    <input matStartDate placeholder="Start date" formControlName="FromDate" #dateRangeStart>
+                    <input matEndDate placeholder="End date" formControlName="ToDate" #dateRangeEnd (dateChange)="dateRangeChange(dateRangeStart, dateRangeEnd)">
+                </mat-date-range-input>
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-date-range-picker #picker 
+                (opened)="onOpen()"
+                ></mat-date-range-picker>
+            </mat-form-field>
+            <div style="display: none">
+                <div class="datepicker-footer" #datepickerFooter>
+                    <button class="datePickerbtn"
+                    *ngFor="let range of ranges"
+                    mat-raised-button  (click)="setRange(range.key)">{{range.label}}</button>
+                </div>
+            </div>
+
+
+
+        </form>
+    </section>
+    <ng-template #renderingContainer></ng-template>
+</section>

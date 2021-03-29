@@ -1,0 +1,115 @@
+<section class="editPricingPlan w-100-p">
+    <section fxLayout="row" fxLayoutAlign="space-between center">
+        <h2>Submit Evidence</h2>
+        <div>
+            <button mat-icon-button >
+            <mat-icon aria-label="Close"   (click)="closeSlidingPanel()" >close</mat-icon>
+            </button>
+        </div>
+    </section>
+    <hr />
+  
+    <section class="userForm">
+        <div class="outer-layer mt-20 p-20">
+         
+            <form fxLayout="column" fxLayoutAlign="start" name="form" [formGroup]="userForm">
+        
+              <h2>Customer details</h2>
+                <div fxLayout.sm="row" fxLayout.gt-sm="row" fxLayout="column" fxLayoutAlign="space-between stretch" fxLayoutAlign.sm="space-between center" fxLayoutAlign.gt-sm="space-between center" fxFlex="1 0 auto">
+                    <mat-form-field appearance="outline" fxFlex.gt-sm="50" fxFlex.sm="50" [ngClass.sm]="'pr-4'" [ngClass.gt-sm]="'pr-4'">
+                        <mat-label>Email</mat-label>
+                        <input class="text-capitalize" matInput formControlName="FirstName" required  >
+                    </mat-form-field>
+    
+                    <mat-form-field appearance="outline" fxFlex.gt-sm="50" fxFlex.sm="50" [ngClass.sm]="'pl-4'" [ngClass.gt-sm]="'pl-4'">
+                        <mat-label>Customer name</mat-label>
+                        <input class="text-capitalize" matInput formControlName="LastName" required>
+                    </mat-form-field>
+                </div>
+
+                <div fxLayout="column" fxLayoutAlign="space-between">
+                    <mat-form-field appearance="outline" >
+                        <mat-label>Address line 1</mat-label>
+                        <input class="text-capitalize" matInput formControlName="FirstName" required  >
+                    </mat-form-field>
+    
+                    <mat-form-field appearance="outline" >
+                        <mat-label>Address line 2</mat-label>
+                        <input class="text-capitalize" matInput formControlName="LastName" required>
+                    </mat-form-field>
+                </div>
+                <div fxLayout.sm="row" fxLayout.gt-sm="row" fxLayout="column" fxLayoutAlign="space-between stretch" fxLayoutAlign.sm="space-between center" fxLayoutAlign.gt-sm="space-between center" fxFlex="1 0 auto">
+                    <mat-form-field appearance="outline" fxFlex.gt-sm="50" fxFlex.sm="50" [ngClass.sm]="'pr-4'" [ngClass.gt-sm]="'pr-4'">
+                        <mat-label>City</mat-label>
+                        <input class="text-capitalize" matInput formControlName="FirstName" required  >
+                    </mat-form-field>
+    
+                    <mat-form-field appearance="outline" fxFlex.gt-sm="50" fxFlex.sm="50" [ngClass.sm]="'pl-4'" [ngClass.gt-sm]="'pl-4'">
+                        <mat-label>Postal Code</mat-label>
+                        <input class="text-capitalize" matInput formControlName="LastName" required>
+                    </mat-form-field>
+                </div>
+               <mat-divider class="h-1"></mat-divider>
+                <h2>Product or service details</h2>
+                
+                <mat-form-field  appearance="outline">
+                    <mat-label>Description</mat-label>
+                    <textarea matInput placeholder=""></textarea>
+                  </mat-form-field>
+
+                <label >What type of product or service is this?</label>
+                <mat-radio-group fxLayout="column"
+
+                 
+                >
+                  <mat-radio-button *ngFor="let season of seasons" [value]="season">
+                    {{season}}
+                  </mat-radio-button>
+                </mat-radio-group>
+    
+                <mat-divider class="h-1 mt-16"></mat-divider>
+
+                <h2>Support evidence</h2>
+                <span>Submit accurate and relevant high-resolution documents to support your case.</span>
+                
+                <span class="h3 text-bold mt-4">Recommended Documents :</span>
+                <ul>
+                    <li *ngFor="let item of rules">{{item.name}}</li>
+                  </ul>
+            <small>Upload one file per recommended document (5MB maximum size total)</small>
+                <ngx-dropzone (change)="onSelect($event)">
+                    <ngx-dropzone-label>    Drag and drop <span class="accent-fg">Files</span></ngx-dropzone-label>
+                    <ngx-dropzone-preview *ngFor="let f of files" [removable]="true" (removed)="onRemove(f)">
+                        <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+                    </ngx-dropzone-preview>
+                </ngx-dropzone>
+                <br>
+                <mat-form-field  appearance="outline">
+                    <mat-label>Additional Information</mat-label>
+                    <textarea matInput placeholder=""></textarea>
+                  </mat-form-field>
+                
+                  <p>Once you submit your evidence for this dispute, we’ll send it to the customer’s bank for review. The bank will make a final decision within 3 months, and we’ll be in touch if they need any more information.</p>
+
+
+                <div fxLayout.sm="row" fxLayoutAlign.sm="center center" fxLayout.gt-sm="row" fxLayoutAlign.gt-sm="center center" fxLayout="column" fxLayoutAlign="space-between stretch" [ngClass.sm]="'mt-24'">
+                    <button
+                    (click)="closeSlidingPanel()" 
+                    mat-raised-button class="my-4 accent-alpha-bg " 
+                    [ngClass.sm]="'mr-4'" [ngClass.gt-sm]="'mr-4'" aria-label="Cancel" >
+                    Cancel
+                    </button>
+                    <button mat-raised-button class="my-4" [ngClass.sm]="'ml-4'" [ngClass.gt-sm]="'ml-4'" color="accent" aria-label="Submit">
+                   Save
+                    </button>
+                </div>
+
+          </form>
+      
+        </div>
+    </section>
+
+
+
+
+</section>

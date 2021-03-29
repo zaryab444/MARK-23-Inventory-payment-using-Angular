@@ -1,0 +1,58 @@
+<section class="listActivity w-100-p">
+    <div class="p-20">
+        <div class="timeLineStart" fxLayout="column"  fxLayoutAlign="start"  *ngFor="let item of ActivityLogs; let i=index;">
+            <div class="mb-20 timeline" fxLayout.sm="row" fxLayout.gt-sm="row" fxLayout="column" fxLayoutAlign="space-between stretch" fxLayoutAlign.sm="space-between center" fxLayoutAlign.gt-sm="space-between center" fxFlex="1 0 auto"  *ngIf="!(i%2)">
+                <div class="pr-20" fxFlex.gt-sm="48" fxFlex.sm="48">
+                    <div class="fuse-card w-100-p">
+                      <div class="pl-16 pt-16" fxLayout="row" fxLayoutAlign="start center">
+                        <img class="w-40 h-40 border-radius-100" src="assets/images/avatars/profile.jpg">
+                        <div class="ml-16">
+                          <div class="text-bold h3">{{item.UserName}}</div>
+                        </div>
+                      </div>
+                        <div class="p-16">
+                            <div class="h3">{{item.Activity}}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="circle" fxFlex.gt-sm="4" fxFlex.sm="4">
+                  <button mat-fab class="fuse-white-bg" class="iconBtn"> 
+                     <mat-icon svgIcon="LastActivity"></mat-icon>
+                  </button>
+                </div>
+                <div class="pl-20" fxFlex.gt-sm="48" fxFlex.sm="48">
+                    <div class="p-16">
+                      <div class="h5 text-bold">{{item.CreatedOn | date : 'MM/dd/yyyy HH:mm:ss a'}}</div>
+                    </div>
+                </div>
+            </div>
+  
+            <div class="mb-20 timeline" fxLayout.sm="row" fxLayout.gt-sm="row" fxLayout="column" fxLayoutAlign="center center" fxLayoutAlign.sm="space-between center" fxLayoutAlign.gt-sm="space-between center" fxFlex="1 0 auto" *ngIf="i%2">
+              <div class="pl-20" fxFlex.gt-sm="48" fxFlex.sm="48">
+                <div class="pr-24" fxLayout="row" fxLayoutAlign="end end" >
+                  <div class="h5 text-bold ">{{item.CreatedOn | date : 'MM/dd/yyyy HH:mm:ss a'}}</div>
+                </div>
+            </div>
+              <div class="circle" fxFlex.gt-sm="4" fxFlex.sm="4">
+                <span mat-fab class="fuse-white-bg" class="iconBtn"> 
+                    <mat-icon svgIcon="LastActivity"></mat-icon>
+                </span>
+            </div>
+            <div class="pl-20" fxFlex.gt-sm="48" fxFlex.sm="48">
+              <div class="fuse-card w-100-p">
+                <div class="p-16" fxLayout="row" fxLayoutAlign="start center">
+                  <img class="w-40 h-40 border-radius-100" src="assets/images/avatars/profile.jpg">
+                  <div class="ml-16">
+                    <div class="text-bold h3">{{item.UserName}}</div>
+                  </div>
+                </div>
+                  <div class="p-16">
+                      <div class="h4">{{item.Activity}}</div>
+                  </div>
+              </div>
+            </div>
+            </div>
+        </div>
+    </div>
+  </section>
+  <app-scroll-bottom></app-scroll-bottom>

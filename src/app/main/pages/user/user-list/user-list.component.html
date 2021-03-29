@@ -1,0 +1,26 @@
+<section class="userList w-100-p">
+    <ng-container *ngIf="headerVisibility">
+        <section  fxLayout="row" fxLayoutAlign="space-between center">
+            <h2>Users</h2>
+            <div class="searchheaders cursor-pointer">
+                <div [matMenuTriggerFor]="childComponentMenu?.menu">
+                    <button mat-icon-button >
+                            <mat-icon>search</mat-icon>
+                    </button>
+                    <span>Search User</span>
+                </div>
+                <app-advanced-search [page]="'userPage'" [data]="userSearch" (submitForm)="searchingUser($event)" #childComponentMenu="menuInOtherComponent" ></app-advanced-search>
+            </div>
+        </section>
+    <hr />
+    </ng-container>
+    <ng-container *ngIf="!headerVisibility">
+        <div class="my-20" fxLayout="row" fxLayoutAlign="end">
+            <button mat-raised-button color="accent" (click)="openSlidePanel()">
+                <mat-icon>add</mat-icon>
+                ADD USER
+            </button>
+        </div>
+    </ng-container>
+    <ng-template #renderingContainer></ng-template>
+</section>

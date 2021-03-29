@@ -1,0 +1,40 @@
+<section class="creditCard-info" [@fadeInOut]>
+        <div class="text-center mx-auto my-8">
+            <img src="../../../../../../assets/images/credit-cards-logos.png">
+        </div>
+
+        <ngx-stripe-card-group>
+            <ngx-stripe-card-number [options]="cardOptions"></ngx-stripe-card-number>
+            <ngx-stripe-card-expiry [options]="cardOptions"></ngx-stripe-card-expiry>
+            <ngx-stripe-card-cvc *ngIf="requiredFields?.SecurityCode" [options]="cardOptionsCVC" ></ngx-stripe-card-cvc>
+        </ngx-stripe-card-group>
+
+        <form fxLayout="column" fxLayoutAlign="center stretch"
+        name="Form" [formGroup]="creditcardForm">
+        
+            <mat-form-field appearance="outline">
+                <mat-label>Cardholder Name</mat-label>
+                <input maxlength="26" matInput formControlName="CardholderName" [required]="requiredFields?.CardholderName">
+                <mat-error>Cardholder Name is required!</mat-error>
+            </mat-form-field>
+        
+            <mat-form-field appearance="outline">
+                <mat-label>Street Address</mat-label>
+                <input matInput formControlName="Address" [required]="requiredFields?.Address">
+                <mat-error>Address is required!</mat-error>
+            </mat-form-field>
+        
+            <mat-form-field appearance="outline">
+                <mat-label> Zip Code </mat-label>
+                <input matInput formControlName="ZipCode" [required]="requiredFields?.ZipCode" >
+                <mat-error> Zip Code is required!</mat-error>
+            </mat-form-field>
+        
+            <div fxLayout="row" fxLayoutAlign="center">
+                <button fxFlex="100" mat-raised-button class="processBtn accent-alpha-bg"
+                [ngClass] = "{'accent-fg': creditcardForm.valid && personalInfoFormValidation.valid && !process}" [disabled]="creditcardForm.invalid || personalInfoFormValidation.invalid || process" (click)="payNow()">
+                    Process
+                </button>
+            </div>
+        </form>
+</section>

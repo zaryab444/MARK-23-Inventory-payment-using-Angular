@@ -1,0 +1,24 @@
+<div class="mt-20">
+    <div fxLayout="column">
+        <fieldset>
+            <legend class="accent-fg">Lock Control</legend>
+            <form [formGroup]="lockControlForm">
+                <div fxFlex="column">
+                    <div fxLayout.sm="row" fxLayout.gt-sm="row" fxLayout="column" fxLayoutAlign="start start">
+                        <div fxFlex.gt-sm="10" fxFlex.sm="10">
+                            <label>Lock : </label>
+                        </div>
+                        <div fxFlex.gt-sm="60" fxFlex.sm="60">
+                            <mat-checkbox class="mx-12" formControlName="IsActive">{{(currentUser.UserRoleId == 1 || 0) ? 'Reseller' : 'Merchants' }}</mat-checkbox>
+                        </div>
+                        <div fxFlex.gt-sm="30" fxFlex.sm="30" fxLayout="column" fxLayoutAlign="end start">
+                            <button mat-raised-button color="accent" (click)="lockSettings()" 
+                            [disabled]="lockingDetails?.IsActive == true && currentUser?.UserRoleId == 2" 
+                            >Update</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </fieldset>
+    </div>
+</div>

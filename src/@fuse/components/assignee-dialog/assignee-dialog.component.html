@@ -1,0 +1,95 @@
+<section class="PricingPlan w-100-p">
+    <div class="px-4" fxLayout="row" fxLayoutAlign="space-between center">
+        <h2>Assign Pricing Plan</h2>
+        <div>
+            <button mat-icon-button (click)= "closesliding()" >
+            <mat-icon aria-label="Close">close</mat-icon>
+            </button>
+        </div>
+    </div>
+    <hr>
+    <div fxLayout="column">
+        <div fxLayout.sm="row" fxLayout.gt-sm="row" fxLayout="column" fxLayoutAlign="space-between stretch" fxLayoutAlign.sm="space-between center" fxLayoutAlign.gt-sm="space-between center" fxFlex="1 0 auto">
+            <div fxFlex.gt-sm="100" fxFlex.sm="100" [ngClass.sm]="'px-4'" [ngClass.gt-sm]="'px-4'">
+                <span class="text-bold h3">{{data.pricingPlanDetail.PricingTitle}}</span>
+                <p class="mt-4"> {{data.pricingPlanDetail.Description}}</p>
+            </div>
+        </div>
+        <div fxLayout.sm="row" fxLayout.gt-sm="row" fxLayout="column" fxLayoutAlign="space-between stretch" fxLayoutAlign.sm="space-between start" fxLayoutAlign.gt-sm="space-between start" fxFlex="1 0 auto">
+            <div fxFlex.gt-sm="50" fxFlex.sm="50" [ngClass.sm]="'px-4'" [ngClass.gt-sm]="'px-4'">
+               <p class="mt-0 mb-4">Pricing Plan Type: 
+                   <span class="text-bold">{{(data.pricingPlanDetail.PricingPlanType == 1)? 'Flat Rate' :(data.pricingPlanDetail.PricingPlanType == 2)? 'InterChange Plus Rates': ''}}
+                   </span>
+                </p>
+               <p class="my-4">Created Date:
+                    <span class="text-bold">{{data.pricingPlanDetail.InsertedOn | date:'MM/dd/yyyy HH:mm:ss a'}}</span>
+               </p>
+            </div>
+
+            <div fxFlex.gt-sm="50" fxFlex.sm="50" [ngClass.sm]="'px-4'" [ngClass.gt-sm]="'px-4'">
+                <span class="text-bold">Rates</span>
+                <p class="my-4">Transaction Fee(%):
+                    <span class="text-bold">{{data.pricingPlanDetail.TransactionFee | currency: '':''}}</span>
+                </p>
+                <p class="my-4">Per Transaction Fee:
+                    <span class="text-bold">{{data.pricingPlanDetail.PerTransactionFee | currency}}</span>
+                </p>
+            </div>
+        </div>
+        <div fxLayout.sm="row" fxLayout.gt-sm="row" fxLayout="column" fxLayoutAlign="space-between stretch" fxLayoutAlign.sm="space-between center" fxLayoutAlign.gt-sm="space-between center" fxFlex="1 0 auto">
+            <mat-form-field appearance="outline" fxFlex.gt-sm="100" fxFlex.sm="100" [ngClass.sm]="'px-4'" [ngClass.gt-sm]="'px-4'">
+                <mat-label>Search</mat-label>
+                <input matInput [(ngModel)]="inputStr"(ngModelChange)="applyFilter(inputStr)"type="text">
+            </mat-form-field>
+        </div>
+       
+        <ng-template [ngIf]="!noFound" [ngIfElse]="notFound">
+            <div class="px-4" class="assigneetable">
+                <table mat-table [dataSource]="dataSource" matSort class="w-100-p ">
+                    <!-- Pricing assign Column -->
+ <ng-container matColumnDef="action">
+           <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
+           <td mat-cell *matCellDef="let row"> 
+            <mat-checkbox 
+            [matTooltipPosition]="'right'"
+            [matTooltipClass]="'customTooltip'"
+            [matTooltip]="row.isMerchant ? 'Pricing plan cannot be removed from the merchant. You can only replace this pricing plan by assigning the other pricing plan to merchant' : null"
+            (click)="assignPlan(row,data.pricingPlanDetail.UserRoleID)" [(ngModel)]="row.idExists"
+            [disabled]="(row.isMerchant&& checkForUserRole?.ResellerId)">
+               </mat-checkbox>
+       
+           </td>
+           </ng-container>                        <!-- Pricing Title Column -->
+                        <ng-container matColumnDef="PricingTitle">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>{{data.assignPricingPlan.AssignTo}} </th>
+                        <td mat-cell *matCellDef="let row"> 
+                            {{row.name | titlecase}} 
+                        </td>
+                        </ng-container>
+                            <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky:true"></tr>
+                        <tr mat-row  
+                        *matRowDef="let row; columns: displayedColumns">
+                        </tr>
+                </table>
+            </div>
+        </ng-template>
+        <ng-template #notFound>
+            <section  fxLayout="column" fxLayoutAlign="center center">
+                <hr>
+                <img src="assets/icons/svg/no-pricing-plan.svg" class="mt-80">
+                <h2> No {{data.assignPricingPlan.AssignTo}}(s) Found</h2>
+            </section>
+        </ng-template>
+
+        <div class="my-16" fxLayout.sm="row" fxLayoutAlign.sm="center center" fxLayout.gt-sm="row" fxLayoutAlign.gt-sm="center center" fxLayout="column" fxLayoutAlign="space-between stretch">
+            <button mat-raised-button class="accent-alpha-bg" [ngClass.sm]="'mr-4'" [ngClass.gt-sm]="'mr-4'"
+            aria-label="Cancel"(mousedown) ="closeSlidingPanel()" >
+            Cancel
+            </button>
+            <button mat-raised-button  [ngClass.sm]="'ml-4'" [ngClass.gt-sm]="'ml-4'" color="accent" 
+                aria-label="Submit" (click)="assignPricingPlan()" *ngIf="!noFound">
+                Save
+            </button>
+        </div>
+    </div>
+</section>

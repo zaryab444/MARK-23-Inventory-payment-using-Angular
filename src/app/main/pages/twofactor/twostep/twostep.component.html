@@ -1,0 +1,59 @@
+<section class="factor-form-wrapper" fxLayout="column" fxLayoutAlign="center center">
+    <ng-template [ngIf]="defaultPage" [ngIfElse]="newUser">
+        <div class="Otp-form">
+
+
+            <div class="logo">
+                <img src="https://paynomix.clique.center/api/Content/Images/PLGImages/1022Logopaynomix_full.svg">
+            </div>
+            <div class="title">Two-Step Authentication</div>
+            <div class="sub-title">We'll send you a 6 digit security code</div>
+            <form *ngIf="!verification">
+                <div fxLayout="row" class="pb-24">
+                    <ng-otp-input (onInputChange)="onOtpChange($event)" [config]="{length:6}"></ng-otp-input>
+                </div>
+                <div class="pb-12">
+                    <a class="cursor-pointer" (click)="verified()">Login First time and want new setup ? Click Here</a>.
+                </div>
+                <div fxLayout="row" fxLayoutAlign="center center">
+                    <mat-spinner color="accent" [diameter]="50"></mat-spinner>
+
+                    
+                </div>
+            </form>
+
+        </div>
+    </ng-template>
+
+    <ng-template #newUser>
+        <div class="Qr-form">
+            <div fxFlex.gt-sm="60" fxFlex.sm="60" class="mt-16" [ngClass.sm]="'pr-20'" >
+                <div class="title pt-12">
+                   To Use Google Authenticator on your Mobile
+                 </div>
+                <div class="pt-12">
+                   1. Visit google Playstore and search TwofactorApp
+                </div>
+                <div class="pt-12">
+                   2. Download And Open App and Scan QR Code
+                 </div>
+                 <div class="pt-12">
+                    3. Get the code and type it in below field
+                 </div>
+                 <div fxLayout="row" fxLayoutAlign="start center" class="pb-24 mt-24">
+                    <ng-otp-input (onInputChange)="onOtpChange($event)" [config]="{length:6}"></ng-otp-input>
+                </div>
+                <div fxLayout="row" fxLayoutAlign="center center">
+                    <mat-spinner color="accent" [diameter]="50"></mat-spinner>
+
+                </div>
+            </div>
+            <mat-divider vertical style="height:280px"></mat-divider>
+            <div fxFlex.gt-sm="40" fxFlex.sm="40">
+            <div>
+                <img class="QrCode-image" src="{{generatedCode.QrCodeSetupImageUrl}}">
+            </div>
+        </div>
+        </div>
+    </ng-template>
+</section>

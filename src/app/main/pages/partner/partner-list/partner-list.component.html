@@ -1,0 +1,73 @@
+<section class="partnerList w-100-p">
+  <section fxLayout="row" fxLayoutAlign="space-between center">
+    <h2  *ngIf="showShimmer">Partners</h2>
+    
+    <ngx-shimmer-loading   *ngIf="!showShimmer"
+    [direction]="'ltr'" 
+    [shape]="'rect'" 
+    [width]="'150px'" [height]="'20px'" ></ngx-shimmer-loading>
+
+       <div class="searchheaders cursor-pointer" *ngIf="showShimmer">
+          <div [matMenuTriggerFor]="childComponentMenu?.menu">
+            <button mat-icon-button>
+                <mat-icon>search</mat-icon>
+            </button>
+            <span>Search Partner</span>
+          </div>
+          <app-advanced-search  [data]="PartnerSearchField" (submitForm)="searchpartner($event)" #childComponentMenu="menuInOtherComponent" ></app-advanced-search>
+          
+        </div>
+        
+        <ngx-shimmer-loading   *ngIf="!showShimmer"
+    [direction]="'ltr'" 
+    [shape]="'rect'" 
+    [width]="'350px'" [height]="'40px'" ></ngx-shimmer-loading>
+    </section>
+
+    <hr *ngIf="showShimmer">
+
+    <ngx-shimmer-loading *ngIf="!showShimmer"
+    [direction]="'ltr'" 
+    [shape]="'rect'" 
+    [width]="'100%'" [height]="'2px'" ></ngx-shimmer-loading>
+
+    <div class="my-20" fxLayout="row" fxLayoutAlign="end">
+        <button *ngIf="showShimmer"
+         mat-raised-button color="accent" (click)="openSlidePanel()">
+            <mat-icon>add</mat-icon>
+            ADD NEW PARTNER
+        </button>
+
+        <ngx-shimmer-loading *ngIf="!showShimmer"
+        [direction]="'ltr'" 
+        [shape]="'rect'" 
+        [width]="'150px'" [height]="'40px'" ></ngx-shimmer-loading>
+    </div>
+
+    <div fxLayout="row"  fxLayoutAlign="space-between center"  > 
+        <div>
+        <ngx-shimmer-loading *ngIf="!showShimmer"
+        [direction]="'ltr'" 
+        [shape]="'square'" 
+        [width]="'50px'" [height]="'50px'" ></ngx-shimmer-loading>
+
+        <ngx-shimmer-loading class="ml-8" *ngIf="!showShimmer"
+        [direction]="'ltr'" 
+        [shape]="'square'" 
+        [width]="'50px'" [height]="'50px'" ></ngx-shimmer-loading>
+    </div>
+    
+        <ngx-shimmer-loading *ngIf="!showShimmer" 
+      
+        [direction]="'ltr'" 
+        [shape]="'rect'" 
+        [width]="'500px'" [height]="'50px'" ></ngx-shimmer-loading>
+
+    </div>
+    <ngx-shimmer-loading *ngIf="!showShimmer" 
+      
+    [direction]="'ltr'" 
+    [shape]="'rect'" 
+    [width]="'100%'" [height]="'100%'" ></ngx-shimmer-loading>
+    <ng-template #renderingContainer></ng-template>
+</section>

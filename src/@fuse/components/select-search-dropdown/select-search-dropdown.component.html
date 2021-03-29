@@ -1,0 +1,28 @@
+<mat-form-field appearance="outline" class="w-100-p " flex="1 0 auto" >
+     <mat-label>Search {{(listtype == 'merchant') ? 'Merchant' : (listtype == 'partner')?'Partner':'Pricing Plan'}}</mat-label>
+    <mat-select [formControl]="entityCtrl" #singleSelect [disabled]="userType==authrole" [(value)]="selectedUser"
+    >
+        <mat-option>
+        <ngx-mat-select-search 
+            [formControl]="entityFilterCtrl" 
+            [placeholderLabel]="'Search'"
+            [noEntriesFoundLabel]="'Not found'">
+        </ngx-mat-select-search>
+    </mat-option>
+        
+    <ng-template [ngIf]="listtype == 'merchant'" >
+        <mat-option 
+        (click)="setEntityId(entity.MerchantId)"
+        *ngFor="let entity of filteredEntities | async" [value]="entity.MerchantId">{{entity.MerchantAccountSetup?.MerchantUserName}}</mat-option>
+
+    </ng-template>
+    <ng-template [ngIf]="listtype == 'partner'">
+        <mat-option
+        (click)="setEntityId(entity.PartnerId)"
+        *ngFor="let entity of filteredEntities | async" [value]="entity.PartnerId">{{entity.PartnerName}}</mat-option>
+    </ng-template>
+  
+     
+
+    </mat-select>
+</mat-form-field>

@@ -1,0 +1,16 @@
+export const environment = {
+    production: false,
+    hmr: false,
+    paynomix: false,
+    surfside: false,
+    wholesale: false,
+    magic: false,
+    mentom: true,
+    dev:false,
+    apiURL: 'https://dashboard.mentom.com/api//api/',
+    title: 'Mentom Payment',
+    assetPathName: 'mentom',
+    themeName: 'theme-mentom',
+    themeColor: '#c41230',
+    themeTransparentColor: '#c41230b3',
+};

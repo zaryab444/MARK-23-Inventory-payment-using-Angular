@@ -1,0 +1,36 @@
+<section class="transactionSummmary w-100-p">
+    <h2>Transaction Summary Report</h2>
+<hr>
+<section class="mt-20" fxLayout="row" fxLayoutAlign="space-between">
+    <div fxflex fxLayoutAlign="start start">
+        <button (click)="callDefault()" *ngIf="isDefault" mat-raised-button class="accent">
+            <mat-icon>arrow_back</mat-icon>
+            Back To Main Report
+          </button>
+    </div>
+    <div fxflex fxLayoutAlign="end end">
+        <form [formGroup]="dateRangeForm" >
+            <mat-form-field appearance="outline">
+                <mat-label>Enter a date range</mat-label>
+                <mat-date-range-input [rangePicker]="picker" >
+                    <input matStartDate placeholder="Start date" formControlName="FromDate" #dateRangeStart>
+                    <input matEndDate placeholder="End date" formControlName="ToDate" #dateRangeEnd (dateChange)="dateRangeChange(dateRangeStart, dateRangeEnd)">
+                </mat-date-range-input>
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-date-range-picker #picker 
+                (opened)="onOpen()"
+                ></mat-date-range-picker>
+            </mat-form-field>
+            <div style="display: none">
+                <div class="datepicker-footer" #datepickerFooter>
+                    <button class="datePickerbtn"
+                    *ngFor="let range of ranges"
+                    mat-raised-button  (click)="setRange(range.key)">{{range.label}}</button>
+                </div>
+            </div>
+        </form>
+    </div>
+  </section>
+<ng-template #renderingcontainer></ng-template>
+
+</section>

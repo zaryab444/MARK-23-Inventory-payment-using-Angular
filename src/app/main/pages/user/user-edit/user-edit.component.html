@@ -1,0 +1,14 @@
+<section class="editPricingPlan w-100-p">
+    <section fxLayout="row" fxLayoutAlign="space-between center">
+        <h2>Edit User | {{UserInfo.FirstName | titlecase}} {{UserInfo.LastName | titlecase}}</h2>
+        <div>
+            <button mat-icon-button (click)= "closeSlidingPanel()" >
+            <mat-icon aria-label="Close">close</mat-icon>
+            </button>
+        </div>
+    </section>
+    <hr />
+    <app-user-form  [UserInfoDetail]="UserInfo"
+     (submitForm)="updateUser($event)"></app-user-form>
+
+</section>

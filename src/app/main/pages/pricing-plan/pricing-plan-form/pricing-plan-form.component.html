@@ -1,0 +1,216 @@
+<section class="pricingPlanForm">
+    <div class="outer-layer mt-20 p-20">
+        <form fxLayout="column" fxLayoutAlign="start"
+         name="form" [formGroup]="pricngPlanForm">
+    
+            <div fxFlex="1 0 auto">
+                <mat-form-field appearance="outline" fxFlex="100">
+                    <mat-label>Pricing Plan Name</mat-label>
+                    <input matInput formControlName="PricingTitle" #ppName required>
+                    <mat-error>Pricing Plan Name is required!</mat-error>
+                </mat-form-field>
+            </div>
+            <div fxFlex="1 0 auto">
+                <mat-form-field appearance="outline" fxFlex="100">
+                    <mat-label>Pricing Plan Description </mat-label>
+                    <textarea matInput formControlName="Description" required></textarea>
+                    <mat-error>Pricing Plan Description is required!</mat-error>
+                </mat-form-field>
+            </div>
+
+            <div fxFlex="1 0 auto">
+            <mat-form-field appearance="outline"  fxFlex="100" [ngClass.sm]="'pl-4'" [ngClass.gt-sm]="'pl-4'">
+                <mat-label>Pricing Plan Type </mat-label>
+                <mat-select formControlName="PricingPlanType" required>
+                    <mat-option [value]="1">Flat Rates</mat-option>
+                    <!-- <mat-option [value]="2"> Interchange-Plus Rates</mat-option> -->
+                </mat-select>
+            </mat-form-field>
+        </div>
+            <div fxLayout.sm="row" fxLayout.gt-sm="row" fxLayout="column" fxLayoutAlign="space-between stretch" fxLayoutAlign.sm="space-between center" fxLayoutAlign.gt-sm="space-between center" fxFlex="1 0 auto">
+                <mat-form-field appearance="outline" fxFlex.gt-sm="50" fxFlex.sm="50" [ngClass.sm]="'pr-4'" [ngClass.gt-sm]="'pr-4'">
+                    <mat-label>Reserve (%) </mat-label>
+                    <input  matInput
+                    currencyMask 
+                    [options]="{ align: 'left', prefix: '',allowNegative: false }"
+                    formControlName="Reserve" >
+                    <mat-error *ngIf="pricngPlanForm.get('Reserve').hasError('required')">
+                        Reserve is required!
+                    </mat-error>
+                    <mat-error *ngIf="!pricngPlanForm.get('Reserve').hasError('required') && pricngPlanForm.get('Reserve').hasError('max')">
+                        Reserve should not exceed from {{maxPercentage}}%
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" fxFlex.gt-sm="50" fxFlex.sm="50" [ngClass.sm]="'pl-4'" [ngClass.gt-sm]="'pl-4'">
+                    <mat-label>Discount Rate (%) </mat-label>
+                    <input matInput 
+                    currencyMask 
+                    [options]="{ align: 'left', prefix: '',allowNegative: false }"
+                    formControlName="DiscountRate" >
+                    <mat-error *ngIf="pricngPlanForm.get('DiscountRate').hasError('required')">
+                        Discount Rate is required!
+                    </mat-error>
+                    <mat-error *ngIf="pricngPlanForm.get('DiscountRate').hasError('max')">
+                        Discount Rate should not exceed from {{maxPercentage}}%
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <div fxLayout.sm="row" fxLayout.gt-sm="row" fxLayout="column" fxLayoutAlign="space-between stretch" fxLayoutAlign.sm="space-between center" fxLayoutAlign.gt-sm="space-between center" fxFlex="1 0 auto">
+                <mat-form-field appearance="outline" fxFlex.gt-sm="50" fxFlex.sm="50" [ngClass.sm]="'pr-4'" [ngClass.gt-sm]="'pr-4'">
+                    <mat-label>Auth Fee ($)</mat-label>
+                    <input matInput
+                    currencyMask 
+                    [options]="{ align: 'left',allowNegative: false }"
+                    formControlName="AuthFee" >
+                    <mat-error>Auth Fee is required!</mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" fxFlex.gt-sm="50" fxFlex.sm="50" [ngClass.sm]="'pl-4'" [ngClass.gt-sm]="'pl-4'">
+                    <mat-label>Dispute (Per Transaction Cost $)</mat-label>
+                    <input matInput 
+                    currencyMask 
+                    [options]="{ align: 'left',allowNegative: false }"
+                    formControlName="ChargeBack" >
+                    <mat-error>Dispute Transaction Cost is required!</mat-error>
+                </mat-form-field>
+            </div>
+            <div fxLayout.sm="row" fxLayout.gt-sm="row" fxLayout="column" fxLayoutAlign="space-between stretch" fxLayoutAlign.sm="space-between center" fxLayoutAlign.gt-sm="space-between center" fxFlex="1 0 auto">
+                <mat-form-field appearance="outline" fxFlex.gt-sm="50" fxFlex.sm="50" [ngClass.sm]="'pr-4'" [ngClass.gt-sm]="'pr-4'">
+                    <mat-label>Retrieval Fee ($)</mat-label>
+                    <input matInput 
+                    currencyMask 
+                    [options]="{ align: 'left',allowNegative: false }"
+                    formControlName="RetrievalFee" >
+                    <mat-error>Retrieval Fee ($) is required!</mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" fxFlex.gt-sm="50" fxFlex.sm="50" [ngClass.sm]="'pl-4'" [ngClass.gt-sm]="'pl-4'">
+                    <mat-label>Monthly Minimum Fee ($)</mat-label>
+                    <input matInput 
+                    currencyMask 
+                    [options]="{ align: 'left',allowNegative: false }"
+                    formControlName="MonthlyMinimunFee" >
+                    <mat-error>Monthly Minimum Fee is required!</mat-error>
+                </mat-form-field>
+            </div>
+            <div fxLayout.sm="row" fxLayout.gt-sm="row" fxLayout="column" fxLayoutAlign="space-between stretch" fxLayoutAlign.sm="space-between center" fxLayoutAlign.gt-sm="space-between center" fxFlex="1 0 auto">
+                <mat-form-field appearance="outline" fxFlex.gt-sm="50" fxFlex.sm="50" [ngClass.sm]="'pr-4'" [ngClass.gt-sm]="'pr-4'">
+                    <mat-label>Monthly Statement Fee ($)</mat-label>
+                    <input matInput
+                    currencyMask 
+                    [options]="{ align: 'left',allowNegative: false }"
+                     formControlName="MonthlyStatementFee" >
+                    <mat-error>Monthly Statement Fee is required!</mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" fxFlex.gt-sm="50" fxFlex.sm="50" [ngClass.sm]="'pl-4'" [ngClass.gt-sm]="'pl-4'">
+                    <mat-label>Application Setup Fee ($)</mat-label>
+                    <input matInput
+                    currencyMask 
+                    [options]="{ align: 'left',allowNegative: false }"
+                    formControlName="ApplicationSetupFee" >
+                    <mat-error>Application Setup Fee  is required!</mat-error>
+                </mat-form-field>
+            </div>
+            <div fxLayout.sm="row" fxLayout.gt-sm="row" fxLayout="column" fxLayoutAlign="space-between stretch" fxLayoutAlign.sm="space-between center" fxLayoutAlign.gt-sm="space-between center" fxFlex="1 0 auto">
+                <mat-form-field appearance="outline" fxFlex.gt-sm="50" fxFlex.sm="50" [ngClass.sm]="'pr-4'" [ngClass.gt-sm]="'pr-4'">
+                    <mat-label>Wire Transfer Fee ($)</mat-label>
+                    <input matInput
+                    currencyMask 
+                    [options]="{ align: 'left',allowNegative: false }"
+                     formControlName="WireTransferFee" >
+                    <mat-error>Wire Transfer Fee is required!</mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" fxFlex.gt-sm="50" fxFlex.sm="50" [ngClass.sm]="'pl-4'" [ngClass.gt-sm]="'pl-4'">
+                    <mat-label>Gateway Setup Fee ($)</mat-label>
+                    <input matInput
+                    currencyMask 
+                    [options]="{ align: 'left',allowNegative: false }"
+                    formControlName="GateWaySetupFee" >
+                    <mat-error>Gateway Setup Fee is required!</mat-error>
+                </mat-form-field>
+            </div>
+            <div fxLayout.sm="row" fxLayout.gt-sm="row" fxLayout="column" fxLayoutAlign="space-between stretch" fxLayoutAlign.sm="space-between center" fxLayoutAlign.gt-sm="space-between center" fxFlex="1 0 auto">
+                <mat-form-field appearance="outline" fxFlex.gt-sm="50" fxFlex.sm="50" [ngClass.sm]="'pr-4'" [ngClass.gt-sm]="'pr-4'">
+                    <mat-label>Gateway Monthly Access ($)</mat-label>
+                    <input matInput
+                    currencyMask 
+                    [options]="{ align: 'left',allowNegative: false }"
+                    formControlName="GateWayMonthlyAccess" >
+                    <mat-error>Gateway Monthly Access is required!</mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" fxFlex.gt-sm="50" fxFlex.sm="50" [ngClass.sm]="'pl-4'" [ngClass.gt-sm]="'pl-4'">
+                    <mat-label>Per Transaction Fee ($) </mat-label>
+                    <input matInput
+                    currencyMask 
+                    [options]="{ align: 'left',allowNegative: false }"
+                    formControlName="PerTransactionFee" >
+                    <mat-error>Per Transaction Fee is required!</mat-error>
+                </mat-form-field>
+            </div>
+            <div fxLayout.sm="row" fxLayout.gt-sm="row" fxLayout="column" fxLayoutAlign="space-between stretch" fxLayoutAlign.sm="space-between center" fxLayoutAlign.gt-sm="space-between center" fxFlex="1 0 auto">
+                <mat-form-field appearance="outline" fxFlex.gt-sm="50" fxFlex.sm="50" [ngClass.sm]="'pr-4'" [ngClass.gt-sm]="'pr-4'">
+                    <mat-label>Fee Amount ($)</mat-label>
+                    <input matInput 
+                    currencyMask 
+                    [options]="{ align: 'left' }"
+                    formControlName="FeeAmount" >
+                    <mat-error>Fee Amount is required!</mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" fxFlex.gt-sm="50" fxFlex.sm="50" [ngClass.sm]="'pl-4'" [ngClass.gt-sm]="'pl-4'">
+                    <mat-label>Other Fee ($) </mat-label>
+                    <input matInput
+                    currencyMask 
+                    [options]="{ align: 'left' }"
+                    formControlName="OtherFee" >
+                    <mat-error>Other Fee is required!</mat-error>
+                </mat-form-field>
+
+               
+            </div>
+
+
+            <div fxLayout.sm="row" fxLayout.gt-sm="row" fxLayout="column" fxLayoutAlign="space-between stretch" fxLayoutAlign.sm="space-between center" fxLayoutAlign.gt-sm="space-between center" fxFlex="1 0 auto">
+              
+                <mat-form-field appearance="outline" fxFlex.gt-sm="50" fxFlex.sm="50" 
+                [ngClass.sm]="'pr-4'" [ngClass.gt-sm]="'pr-4'">
+                    <mat-label>Transaction Fee (%)</mat-label>
+                    <input 
+                    currencyMask #transactionFees 
+                    [options]="{ align: 'left', prefix: '',allowNegative: false }"
+                    matInput formControlName="TransactionFee" required>
+                    <mat-error *ngIf="pricngPlanForm.get('TransactionFee').hasError('required')">
+                        Transaction Fee is required!
+                    </mat-error>
+                    <mat-error *ngIf="!pricngPlanForm.get('TransactionFee').hasError('required') && 
+                    pricngPlanForm.get('TransactionFee').hasError('max')">
+                        Transaction Fee should not exceed from {{maxPercentage}}%
+                    </mat-error>
+                    <mat-error *ngIf="pricngPlanForm.get('TransactionFee').hasError('transactionFeeZero')">
+                        Transaction Fee can not be 0
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" fxFlex.gt-sm="50" fxFlex.sm="50" [ngClass.sm]="'pl-4'" [ngClass.gt-sm]="'pl-4'">
+                    <mat-label>Void Penalty Fee ($) </mat-label>
+                    <input matInput currencyMask [options]="{ align: 'left' }"formControlName="VoidFee" >
+                </mat-form-field>
+            </div>
+
+            <div fxLayout.sm="row" fxLayoutAlign.sm="center center" fxLayout.gt-sm="row" fxLayoutAlign.gt-sm="center center" fxLayout="column" fxLayoutAlign="space-between stretch">
+                <button mat-raised-button class="my-4 accent-alpha-bg" [ngClass.sm]="'mr-4'" [ngClass.gt-sm]="'mr-4'"
+                aria-label="Cancel" (mousedown) = "openDialog()" >
+                Cancel
+                </button>
+                <button mat-raised-button class="my-4" [ngClass.sm]="'ml-4'" [ngClass.gt-sm]="'ml-4'" color="accent" 
+                    aria-label="Submit" [disabled]="pricngPlanForm.invalid" (click)="submit()">
+                    {{(pricingPlanDetail)?'Update':'Save'}}
+                </button>
+            </div>
+      </form>
+    </div>
+</section>

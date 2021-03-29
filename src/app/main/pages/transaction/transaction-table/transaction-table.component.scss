@@ -1,0 +1,104 @@
+.transactionTable{
+    .table-responsive{
+        max-height: unset !important;
+            table{
+                thead{
+                        tr{
+                            th{
+                                z-index: 101 !important;
+                                &:nth-child(2){
+                                z-index: 102 !important;
+                                    mat-checkbox{
+                                    vertical-align: super;
+                                    }
+                                }
+                                &:nth-last-child(2){
+                                    min-width: 150px;
+                                }
+                               
+                            }
+                        }
+            
+                }
+                tbody{
+                    tr{
+                        &.expanded {
+                            & + .refund-row{
+                                min-height: auto;
+                                overflow: visible;
+                            }
+                        }
+                        &.expandedDetail {
+                            & + * + .detail-row{
+                                min-height: auto;
+                                overflow: visible;
+                            }
+                        }
+                        &:not(.expanded){
+                            & + .refund-row{
+                               display: none;
+                            }
+                        }
+                        &:not(.expandedDetail){
+                            & + * + .detail-row{
+                                display: none;
+                             }   
+                        }
+                        td{
+                            &:nth-child(2){
+                                mat-checkbox{
+                                    vertical-align: super;
+                                }
+                            }
+                            &:nth-last-child(2){
+                                min-width: 150px;
+                            }
+                        }
+                        
+                    }
+                }
+            }
+            .expandedRefundDetail{
+                table{
+                    thead{
+                        tr{
+                            th{
+                                z-index: 100 !important;
+                                &:nth-child(2){
+                                z-index: 100 !important;
+                                }
+                            }
+                        }
+            
+                }  
+                }
+            }
+        } 
+}
+.customSelect {
+    padding-left: 10px;
+    margin-top: 10px;
+}
+.ml-51{
+  margin-left: 50px;
+}
+.p-5 {
+    padding: 5px;
+}
+.outer-layer {
+    &.boxStyle1 {
+        width: 5% !important;
+        border-radius: 5px !important;
+        padding: 8px !important;
+        background-color: rgba(0, 0, 0, 0.04);
+      }
+    &.boxStyle {
+        width: 15% !important;
+        border-radius: 5px !important;
+        padding: 8px !important;
+        background-color: rgba(0, 0, 0, 0.04);
+        margin-left: 10px;
+      }
+}
+
+

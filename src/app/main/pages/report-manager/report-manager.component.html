@@ -1,0 +1,29 @@
+<section class="rptManagement w-100-p">
+    <h2>Reports</h2>
+    <!-- <h5 class="secondary-text text-uppercase font-weight-700">Financial reports</h5> -->
+    <hr>
+    <div class="p-15" fxLayout.sm="row wrap"fxLayout.gt-sm="row wrap" fxLayout="column" fxLayoutAlign="start" fxLayoutAlign.sm="space-between center"fxLayoutAlign.gt-sm="space-between center">
+        <mat-card fxFlex="32" class="p-0 reportCard" *ngFor="let item of listCards">
+            <mat-card-header class="grey-100-bg h-60 bb">
+                <div fxLayout="row" fxFlex="100" fxLayoutAlign="end center">
+                    <button mat-button class="grey-300 mr-12" routerLink="{{item.url}}">
+                        <mat-icon>keyboard_arrow_right</mat-icon>
+                    </button>
+                </div>
+            </mat-card-header>
+            <mat-card-content class="p-0 h-160" fxLayout="column">
+                <button mat-fab class="fuse-white-bg" class="iconBtn"> 
+                        <mat-icon [color]="item.class" >{{item.icon}}</mat-icon>
+                </button>
+                <div fxFlex="100" fxLayoutAlign="start center" class="bb">
+                    <h2 class="heading">{{item.heading}}</h2> 
+                </div>
+                <div class="my-4" fxLayoutAlign="end end">
+                    <button mat-button class="font-weight-700"  routerLink="{{item.url}}">
+                    {{item.bottomheading}}
+                    </button>
+                </div>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</section>

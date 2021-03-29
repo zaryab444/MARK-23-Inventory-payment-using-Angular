@@ -1,0 +1,77 @@
+<div fxLayout="row" fxLayoutAlign="space-between center">
+   
+    
+    <mat-paginator  [pageSize]="100" 
+      [pageSizeOptions]="[100, 150, 200, 250]" class="ml-auto">
+    </mat-paginator>
+  </div>
+  <!-- <mat-paginator [pageSize]="100" [pageSizeOptions]="[100, 150, 200, 250]"></mat-paginator>     -->
+  <section class="allDisputesTable table-responsive mat-card">
+      <table mat-table [dataSource]="dataSource" matSort class="w-100-p">
+
+  <ng-container matColumnDef="Dispute.amount">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header="Dispute.amount" style="text-align: center !important;"> Amount </th>
+    <td mat-cell *matCellDef="let row" style="text-align: center !important;"> 
+        {{(row?.Dispute?.amount / 100) | currency}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="Info.MerchantUserName">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header="Info.MerchantUserName"> Merchant Name </th>
+    <td mat-cell *matCellDef="let row" >
+           {{row?.Info?.MerchantUserName || '--'}} 
+       </td>
+  </ng-container>
+ 
+  <ng-container matColumnDef="Info.CardType">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header="Info.CardType"> Last 4 Digits </th>
+    <td mat-cell *matCellDef="let row" > <mat-icon class="cusIcon" [svgIcon]="
+      (row?.Info?.CardType == 'visa' || row?.Info?.CardType == 'Visa') ? 
+      'visa' :  (row?.Info?.CardType == 'mastercard' || row?.Info?.CardType == 'MasterCard') ? 
+      'mastercard'  :  (row?.Info?.CardType == 'amex' || row?.Info?.CardType == 'AmericanExpress') ? 
+      'amex'  :  (row?.Info?.CardType == 'jcb') ? 
+      'jcb'  :  (row?.Info?.CardType == 'discover' || row?.Info?.CardType == 'Discover') ? 
+      'discover'  :  (row?.Info?.CardType == 'diners') ? 
+      'diners'  :  'nocardfound' "></mat-icon> **** {{row?.Info?.Last4Digit}} </td>
+  </ng-container>
+
+ 
+ 
+  <ng-container matColumnDef="Dispute.reason">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header="Dispute.reason"> Reason </th>
+    <td mat-cell *matCellDef="let row" > {{row?.Dispute?.reason}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="Dispute.created">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header="Dispute.created"> Disputed On </th>
+    <td mat-cell *matCellDef="let row" > {{row?.Dispute?.created * 1000 | date:'MM/dd/yyyy'}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="Dispute.status">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header="Dispute.status">Status</th>
+    <td mat-cell *matCellDef="let row" >
+      <mat-chip-list>
+        <mat-chip class="py-4 px-16 chip fuse-white-fg "  
+        [ngClass]="(row?.Dispute?.status == 'needs_response' || row?.Dispute?.status == 'warning_needs_response') ? 
+        'green-600' :  (row?.Dispute?.status == 'under_review' || row?.Dispute?.status == 'warning_under_review') ?
+         'orange-500'  :  (row?.Dispute?.status == 'charge_refunded') ? 
+         'cyan-300' : (row?.Dispute?.status == 'won') ? 
+         'cyan-500' : 'red-500'">
+         <small>
+            {{(row?.Dispute?.status == 'needs_response' || row?.Dispute?.status == 'warning_needs_response') ? 
+            'Open' :  (row?.Dispute?.status == 'under_review' || row?.Dispute?.status == 'warning_under_review') ?
+             'Reviewing'  :  (row?.Dispute?.status == 'charge_refunded') ? 
+             'Closed' : (row?.Dispute?.status == 'won') ? 
+             'Won' : 'Lost'}}
+         </small>
+        </mat-chip>
+    </mat-chip-list>
+       </td>
+  </ng-container>
+ 
+ 
+  <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky:true"></tr>
+  <tr mat-row  (mouseenter)="actionControlOnHover = i"  (mouseleave)="actionControlOnHover = -1" 
+  *matRowDef="let row; columns: displayedColumns; let i = index">
+  </tr>
+</table>
+</section>

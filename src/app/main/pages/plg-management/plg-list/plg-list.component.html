@@ -1,0 +1,13 @@
+<section class="partnerList w-100-p">
+    <section fxLayout="row" fxLayoutAlign="space-between center">
+      <h2>PLG Manager</h2>
+      </section>
+      <hr />
+      <div class="my-20" fxLayout="row" fxLayoutAlign="end">
+          <button *ngIf="authRoleadmin==userType" mat-raised-button color="accent" [routerLink]="'/pages/plg-management/plg-create'">
+              <mat-icon>add</mat-icon>
+              ADD PLG
+          </button>
+      </div>
+      <ng-template #renderingContainer></ng-template>
+  </section>

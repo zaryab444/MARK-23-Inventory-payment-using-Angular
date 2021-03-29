@@ -1,0 +1,35 @@
+.timeLineStart{
+  position: relative;
+  .timeline{
+    width: 100%;
+       &::after {
+        content: "";
+        position: absolute;
+        top: 0px;
+        left: 50%;
+        height: 100%;
+        width: 2px;
+        background: #f3f3f4;
+      }
+  }
+}
+  .fuse-card {
+    max-width: 100%;
+  }
+  .circle{
+    z-index: 1 !important;
+    .iconBtn{
+      z-index: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      text-align: center;
+      background: #f3f3f4;
+      border: 2px solid #f3f3f4;
+     
+      }
+  }
+  

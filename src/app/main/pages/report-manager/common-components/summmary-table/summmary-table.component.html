@@ -1,0 +1,24 @@
+
+<div class="my-20" fxLayout="row" fxLayoutAlign="space-between center" >
+  <div fxLayout="row">
+    <mat-icon  class = "export-Icon"  (click)= "exportFile('pdf')" [svgIcon]="'exportpdf'" [matTooltip]= "'Export to PDF'"></mat-icon> 
+    <mat-icon   class = "export-Icon"  (click)= "exportFile('csv')" [svgIcon]="'exportexcel'" [matTooltip]= "'Export to CSV'"></mat-icon> 
+    </div>
+    <mat-paginator [pageSizeOptions]="[100, 150, 200, 250]"></mat-paginator>
+    </div>
+<section class="summaryTable">
+  <div class="mat-card table-responsive mt-20">
+    <table mat-table [dataSource]="dataSource" matSort class="w-100-p">
+      <!-- table --> 
+      <ng-container *ngFor="let column of columns"  matColumnDef="{{column.columnDef}}">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ (column.header == 'PartnerName') ? 'Partner Name' : (column.header == 'ResellerName') ?  'Reseller Name' : (column.header == 'MerchantName') ? 'Merchant Name' : (column.header == 'LocationName') ? 'Location Name' : column.header }}</th>
+        <td mat-cell *matCellDef="let row">{{ (column.header == 'PartnerName') ? column.cell(row) : (column.header == 'ResellerName') ?  column.cell(row) : (column.header == 'MerchantName') ? column.cell(row) : (column.header == 'LocationName') ? column.cell(row) : column.cell(row)  | currency}}</td>
+      </ng-container>
+      
+      <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky:true"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;" class="mouseHover"  [disabled]='disabledRow == true' (click)="detailRow(row)">
+      </tr>
+    </table>
+  </div>
+</section>
+<app-scroll-bottom></app-scroll-bottom>

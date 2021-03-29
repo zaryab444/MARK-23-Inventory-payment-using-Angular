@@ -1,0 +1,55 @@
+td.mat-cell:last-of-type, td.mat-footer-cell:last-of-type {
+    width: 200px;
+    }
+
+    .export-Icon{
+      cursor:pointer; 
+    }
+
+    .mat-column-FirstName {
+        word-wrap: break-word !important;
+        white-space: unset !important;
+        flex: 0 0 11% !important;
+        width: 11% !important;
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+      
+        word-break: break-word;
+      
+        -ms-hyphens: auto;
+        -moz-hyphens: auto;
+        -webkit-hyphens: auto;
+        hyphens: auto;
+      }
+      
+      .mat-column-LastName {
+        word-wrap: break-word !important;
+        white-space: unset !important;
+        flex: 0 0 11% !important;
+        width: 11% !important;
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+      
+        word-break: break-word;
+      
+        -ms-hyphens: auto;
+        -moz-hyphens: auto;
+        -webkit-hyphens: auto;
+        hyphens: auto;
+      }
+
+      .mat-column-Phone {
+        word-wrap: break-word !important;
+        white-space: unset !important;
+        flex: 0 0 14% !important;
+        width: 14% !important;
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+      
+        word-break: break-word;
+      
+        -ms-hyphens: auto;
+        -moz-hyphens: auto;
+        -webkit-hyphens: auto;
+        hyphens: auto;
+      }

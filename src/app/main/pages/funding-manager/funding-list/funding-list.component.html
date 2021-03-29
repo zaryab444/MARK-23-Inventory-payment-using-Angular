@@ -1,0 +1,18 @@
+<section class="fundingList w-100-p">
+    <section fxLayout="row" fxLayoutALign="space-between center">
+        <h2>Funding Manager</h2>
+        <div class="searchBox">
+          
+        </div>
+    </section>
+    <hr />
+    <mat-tab-group mat-align-tabs="start">
+      <mat-tab label="Pending Fund">
+        <ng-template #renderingContainerNonFunded></ng-template>
+      </mat-tab>
+      <mat-tab label="Funded">
+        <ng-template #renderingContainerFunded></ng-template>
+      </mat-tab>
+  </mat-tab-group>
+</section>
+<app-scroll-bottom></app-scroll-bottom>

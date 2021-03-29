@@ -1,0 +1,79 @@
+<section class="userForm">
+    <div class="outer-layer mt-20 p-20">
+        <form fxLayout="column" fxLayoutAlign="start" name="form" [formGroup]="userForm">
+    
+          
+            <div fxLayout.sm="row" fxLayout.gt-sm="row" fxLayout="column" fxLayoutAlign="space-between stretch" fxLayoutAlign.sm="space-between center" fxLayoutAlign.gt-sm="space-between center" fxFlex="1 0 auto">
+                <mat-form-field appearance="outline" fxFlex.gt-sm="50" fxFlex.sm="50" [ngClass.sm]="'pr-4'" [ngClass.gt-sm]="'pr-4'">
+                    <mat-label>First Name</mat-label>
+                    <input class="text-capitalize" matInput formControlName="FirstName" required [maxlength]="globalConfig?.validator?.maxName" >
+                    <mat-error *ngIf="userForm.get('FirstName').hasError('required')">First Name is required!</mat-error>
+                    <mat-error *ngIf="!userForm.get('FirstName').hasError('required') && userForm.get('FirstName').hasError('maxlength')" > First Name should have maximun length of {{globalConfig?.validator?.maxName}} </mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" fxFlex.gt-sm="50" fxFlex.sm="50" [ngClass.sm]="'pl-4'" [ngClass.gt-sm]="'pl-4'">
+                    <mat-label>Last Name</mat-label>
+                    <input class="text-capitalize" matInput formControlName="LastName" required [maxlength]="globalConfig?.validator?.maxName">
+                    <mat-error *ngIf="userForm.get('FirstName').hasError('required')">Last Name is required!</mat-error>
+                    <mat-error *ngIf="!userForm.get('LastName').hasError('required') && userForm.get('FirstName').hasError('maxlength')">Last Name should have maximum length of {{globalConfig?.validator?.maxName}}
+
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <div fxLayout.sm="row" fxLayout.gt-sm="row" fxLayout="column" fxLayoutAlign="space-between stretch" fxLayoutAlign.sm="space-between center" fxLayoutAlign.gt-sm="space-between center" fxFlex="1 0 auto">
+                <mat-form-field appearance="outline" fxFlex.gt-sm="50" fxFlex.sm="50" [ngClass.sm]="'pr-4'" [ngClass.gt-sm]="'pr-4'">
+                    <mat-label>Username</mat-label>
+                    <input  matInput formControlName="Username" type="email" required [maxlength]="globalConfig?.validator?.maxFieldLength">
+                    <mat-error *ngIf="userForm.get('Username').hasError('required')">Username is required!</mat-error>
+                    <mat-error
+                    *ngIf="!userForm.get('Username').hasError('required') &&
+                            (userForm.get('Username').hasError('Username') || userForm.get('Username').hasError('pattern'))">
+                    Please enter a valid username address
+                </mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" fxFlex.gt-sm="50" fxFlex.sm="50" [ngClass.sm]="'pl-4'" [ngClass.gt-sm]="'pl-4'">
+                    <mat-label> Email</mat-label>
+                    <input matInput formControlName="Email" type="email" nospace required>
+                    <mat-error *ngIf="userForm.get('Email').hasError('required')">
+                        Email is required!
+                    </mat-error> 
+                    <mat-error
+                    *ngIf="!userForm.get('Email').hasError('required') &&
+                            (userForm.get('Email').hasError('email') || userForm.get('Email').hasError('pattern'))">
+                    Please enter a valid email address
+                </mat-error>
+                </mat-form-field>
+            </div>
+         
+        
+      
+            <div fxLayout.sm="row" fxLayout.gt-sm="row" fxLayout="column" fxLayoutAlign="space-between stretch" fxLayoutAlign.sm="space-between center" fxLayoutAlign.gt-sm="space-between center" fxFlex="1 0 auto">
+                <mat-form-field appearance="outline" fxFlex.gt-sm="50" fxFlex.sm="50" [ngClass.sm]="'pr-4'" [ngClass.gt-sm]="'pr-4'">
+                    <mat-label>Phone</mat-label>
+                    <input matInput mask="(000) 000-0000" formControlName="Phone" required>
+                    <mat-error>Phone Number is required!</mat-error>
+                </mat-form-field>
+              
+               
+            </div>
+  
+
+            
+            <div fxLayout.sm="row" fxLayout.gt-sm="row" fxLayout="column" fxLayoutAlign="space-between stretch" fxLayoutAlign.sm="space-between center" fxLayoutAlign.gt-sm="space-between center" fxFlex="1 0 auto">
+                <mat-slide-toggle color="accent" formControlName="IsActive"  [disabled]="currentUser?.EntityId == UserInfoDetail?.EntityId">{{userForm.value.IsActive?'Active':'InActive'}}</mat-slide-toggle>
+
+            </div>
+
+            <div fxLayout.sm="row" fxLayoutAlign.sm="center center" fxLayout.gt-sm="row" fxLayoutAlign.gt-sm="center center" fxLayout="column" fxLayoutAlign="space-between stretch" [ngClass.sm]="'mt-24'">
+                <button mat-raised-button class="my-4 accent-alpha-bg " [ngClass.sm]="'mr-4'" [ngClass.gt-sm]="'mr-4'" aria-label="Cancel" (click)= "closeSlidingPanel()" >
+                Cancel
+                </button>
+                <button mat-raised-button class="my-4" [ngClass.sm]="'ml-4'" [ngClass.gt-sm]="'ml-4'" color="accent" aria-label="Submit" [disabled]="userForm.invalid" (click)="submit()"  >
+                {{(UserInfoDetail)?'Update':'Save'}}
+                </button>
+            </div>
+
+      </form>
+    </div>
+</section>

@@ -1,0 +1,18 @@
+<section class="CompanyStatus">
+    <fieldset class="my-4 mx-0">
+        <legend class="accent-fg">Country of Origin </legend>
+            <form fxLayout="column" fxLayoutAlign="start" [formGroup]="countryForm">
+                <div class="py-8" fxLayout.sm="row" fxLayout.gt-sm="row" fxLayout="column" fxLayoutAlign="space-between stretch" fxLayoutAlign.sm="space-between center" fxLayoutAlign.gt-sm="space-between center" fxFlex="1 0 auto">
+                    <div fxFlex.gt-sm="50" fxFlex.sm="50" [ngClass.sm]="'pl-4'" [ngClass.gt-sm]="'pl-4'">
+                        <mat-label>Status:</mat-label>
+                            <mat-slide-toggle class="ml-20" color="accent" formControlName="IsActive">{{this.countryForm.get('IsActive').value?'Active':'InActive'}}</mat-slide-toggle>
+                    </div>
+                    <div fxFlex.gt-sm="50" fxFlex.sm="50" [ngClass.sm]="'pl-4'" [ngClass.gt-sm]="'pl-4'">
+                        <div fxLayout.sm="row" fxLayoutAlign.sm="center center" fxLayout.gt-sm="row" fxLayoutAlign.gt-sm="center center" fxLayout="column" fxLayoutAlign="space-between stretch" [ngClass.sm]="'mt-24'">
+                            <button mat-raised-button color="accent" (click)="ipBlockingStatus()">Save</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+    </fieldset>
+</section>

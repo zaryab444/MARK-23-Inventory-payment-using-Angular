@@ -1,0 +1,45 @@
+
+<section class="addvancedSearch" >
+    <mat-menu>
+        <form fxLayout="column" class = "py-4 px-8" fxLayoutAlign="start" name="form" [formGroup]="SearchForm" (click)="stopPropagation($event)" >
+            <div fxLayout ="row wrap" fxLayout.lt-sm="column" fxLayoutAlign.lt-sm="center start" fxLayoutAlign="start" formArrayName="MatMenuFields">
+                <ng-container *ngFor="let item of SearchForm.get('MatMenuFields')['controls']; let i = index;" [formGroupName]="i">
+                    <!-- only for phone masking input or simple input-->
+                    <mat-form-field appearance="outline" fxFlex.gt-sm="100" fxFlex.sm="100" [ngClass.sm]="'mx-4'" [ngClass.gt-sm]="'mx-4'"*ngIf="!data[i].option && !data[i].type && !data[i].currencyMask" >
+                            <mat-label>{{data[i].label}}</mat-label>
+                            <input matInput type="text" [formControlName]="data[i].ControlName"  [maxlength]="data[i]?.maxlength" [mask]="data[i]?.mask" [minlength]="data[i]?.minlength">
+                      </mat-form-field>
+                      <!-- only for curency masking input-->
+                    <mat-form-field appearance="outline" fxFlex.gt-sm="100" fxFlex.sm="100" [ngClass.sm]="'mx-4'" [ngClass.gt-sm]="'mx-4'"*ngIf="!data[i].option && !data[i].type && data[i].currencyMask" >
+                        <mat-label>{{data[i].label}}</mat-label>
+                        <input matInput type="text" [formControlName]="data[i].ControlName" currencyMask 
+                        [options]="data[i].currencyMask[0]">
+                  </mat-form-field>
+
+                      <!--only for input for directive   -->
+                      <mat-form-field appearance="outline" fxFlex.gt-sm="100" fxFlex.sm="100" [ngClass.sm]="'mx-4'" [ngClass.gt-sm]="'mx-4'"*ngIf="!data[i].option && data[i].type && !data[i].currencyMask" >
+                        <mat-label>{{data[i].label}}</mat-label>
+                        <input matInput [numberOnly]="data[i]?.type" type="text" [formControlName]="data[i].ControlName"  [maxlength]="data[i]?.maxlength" [minlength]="data[i]?.minlength">
+                    </mat-form-field>
+                    <!--only for mat options  -->
+                     <mat-form-field appearance="outline" fxFlex.gt-sm="100" fxFlex.sm="100" [ngClass.sm]="'mx-4'" [ngClass.gt-sm]="'mx-4'"*ngIf="data[i].option && !data[i].type && !data[i].currencyMask" >
+                        <mat-label>{{data[i].label}}</mat-label>
+                      <mat-select formControlName="{{data[i].ControlName}}"  >
+                          <mat-option  *ngFor="let item of data[i].option" [value]="item.value">
+                              {{item.text}}
+                          </mat-option>
+                      </mat-select>
+                  </mat-form-field>
+                     
+                </ng-container>   
+            </div>
+            <button mat-raised-button color="accent" class="mx-4 mb-4" aria-label="Submit" (click)="submit()">
+                Search
+            </button>
+            <button mat-raised-button class="mx-4 mt-4 accent-alpha-bg" aria-label="Clear" 
+            (click)= "resetForm()">
+                Clear
+            </button>
+      </form>
+    </mat-menu>
+</section>

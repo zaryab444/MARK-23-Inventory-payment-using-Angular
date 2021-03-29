@@ -1,0 +1,12 @@
+<section class="createUser w-100-p">
+    <section fxLayout="row" fxLayoutAlign="space-between center">
+        <h2>Add User</h2>
+        <div>
+            <button mat-icon-button (click)= "closeSlidingPanel()" >
+            <mat-icon aria-label="Close">close</mat-icon>
+            </button>
+        </div>
+    </section>
+    <hr />
+    <app-user-form  (submitForm)="createUser($event)"></app-user-form>
+</section>

@@ -1,0 +1,16 @@
+<section class="editReseller w-100-p">
+    <h2>Edit Reseller | {{resellerInfo?.ResellerName}}</h2>
+    <hr />
+    <mat-tab-group mat-align-tabs="start">
+        <mat-tab label="Reseller Info">
+            <app-reseller-form [resellerDetail]="resellerInfo" (submitForm)="updateReseller($event)"></app-reseller-form>
+        </mat-tab>
+        <mat-tab label="Pricing Plan">
+           <app-pricing-plan-list [headerVisibility]="false" [getPricingPlanBy] = "{ResellerId: resellerInfo?.ResellerId}"></app-pricing-plan-list>
+        </mat-tab>
+        <mat-tab label="Users">
+            <app-user-list [headerVisibility]="false"  [getUserBy] = "{ResellerId: resellerInfo?.ResellerId,EntityId:resellerInfo?.ResellerId,UserRoleId: 4 ,isUserAdd : true}"></app-user-list>
+         </mat-tab>
+    </mat-tab-group>
+   
+</section>

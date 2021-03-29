@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="1370.207px" height="688.006px" viewBox="0 0 1370.207 688.006" enable-background="new 0 0 1370.207 688.006"
+	 xml:space="preserve">
+<linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="672.1431" y1="243.9116" x2="748.1431" y2="1007.9116">
+	<stop  offset="0" style="stop-color:#FFFFFF"/>
+	<stop  offset="1" style="stop-color:#F1F2F2"/>
+</linearGradient>
+<polygon fill="url(#SVGID_1_)" points="0,377.993 1370.207,60.395 1370.207,386.035 0,688.006 "/>
+<polygon fill="#E8ECF0" points="1280.94,142.957 1280.94,208.401 1370.207,189.577 1370.207,126.153 "/>
+<polygon fill="#E8ECF0" points="309.669,619.76 306.752,682.339 485.271,646.005 485.271,581.111 "/>
+<linearGradient id="SVGID_2_" gradientUnits="userSpaceOnUse" x1="1110.9785" y1="60.3945" x2="1370.207" y2="60.3945">
+	<stop  offset="0" style="stop-color:#8B5BA5"/>
+	<stop  offset="0.5082" style="stop-color:#4A7BBE"/>
+	<stop  offset="1" style="stop-color:#79C57F"/>
+</linearGradient>
+<polygon fill="url(#SVGID_2_)" points="1110.979,55.344 1110.979,120.789 1370.207,63.424 1370.207,0 "/>
+<polygon fill="none" stroke="#E8EBEF" stroke-width="2" stroke-miterlimit="10" points="1018.063,270.456 1018.063,335.9 
+	1277.292,278.535 1277.292,215.111 "/>
+<polygon fill="none" stroke="#E8EBEF" stroke-width="2" stroke-miterlimit="10" points="102.979,381.348 102.979,446.792 
+	362.207,389.427 362.207,326.003 "/>
+<linearGradient id="SVGID_3_" gradientUnits="userSpaceOnUse" x1="0" y1="569.7373" x2="344.46" y2="569.7373">
+	<stop  offset="0" style="stop-color:#8B5BA5"/>
+	<stop  offset="0.5082" style="stop-color:#4A7BBE"/>
+	<stop  offset="1" style="stop-color:#79C57F"/>
+</linearGradient>
+<polygon fill="url(#SVGID_3_)" points="0,572.705 0,638.15 344.46,564.748 344.46,501.324 "/>
+<polygon fill="#2A68B2" points="1018.063,139.701 1018.063,205.145 1370.207,126.369 1370.207,62.945 "/>
+</svg>

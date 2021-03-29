@@ -1,0 +1,34 @@
+<section class="apiKey p-16">
+    <div fxLayout.sm="row" fxLayout="column" fxLayoutAlign="center center" fxLayout.gt-sm="row" fxLayoutAlign.gt-sm="start start" class="mt-4">
+        <div fxFlex.gt-sm="20" fxFlex.sm="20" fxFlex="100" fxLayout="column" fxLayoutAlign="center center" class="p-24" >
+            <div  class="logo">
+                <img src="assets/images/{{appInfo?.assetPathName}}-logos/apikeyicon.svg">
+            </div>
+        </div>
+
+        <div fxFlex.gt-sm="80" fxFlex.sm="80" class="p-24">
+           <h1 class="ml-20 my-0">
+               API Key 
+           </h1>
+           <mat-list role="listitem" >
+            <mat-list-item role="listitem">This is your account’s API key which can perform any API request to Stripe. Please don't share your API key with anyone and keep it safe.</mat-list-item>
+            <mat-list-item role="listitem" class="">Get 
+            <ng-template  [ngIf]="showApiKey == '' " [ngIfElse]="showKey">
+                 <span  class="ml-4 accent-fg cursor-pointer" (click)="opendialog1()">API Key</span>
+            </ng-template>
+            <ng-template #showKey>
+             <div class="px-20 ">
+                <mat-form-field  class= "w-700">
+                    <input matInput [(ngModel)] = "apikey">
+                    <mat-icon class="cursor-pointer" matSuffix (click)="showApiKey = ''">close</mat-icon>
+                    <mat-icon class="cursor-pointer" [cdkCopyToClipboard]="apikey" matSuffix matTooltip="Copy to clipboard" (click)="onclick()">file_copy</mat-icon>
+                  </mat-form-field>
+                </div>
+            </ng-template>
+         </mat-list-item>
+      
+        </mat-list>
+        <!-- <p class="ml-20 mt-20">if your download does not automatically, please <span class="accent-fg">  try again</span></p> -->
+        </div>
+    </div>
+</section>

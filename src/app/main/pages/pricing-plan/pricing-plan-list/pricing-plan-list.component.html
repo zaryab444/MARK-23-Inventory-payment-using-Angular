@@ -1,0 +1,27 @@
+<section class="pricingPlanList w-100-p">
+
+  <ng-container *ngIf="headerVisibility">
+  <section fxLayout="row" fxLayoutAlign="space-between center">
+    <h2>Pricing Plan</h2>
+    <div class="searchheaders cursor-pointer">
+        <div [matMenuTriggerFor]="childComponentMenu?.menu">
+          <button mat-icon-button>
+              <mat-icon>search</mat-icon>
+          </button>
+          <span>Search Pricing Plan</span>
+        </div>
+        <app-advanced-search  [data]="pricingPlanSearchFields()" (submitForm)="searchPricingPlan($event)" #childComponentMenu="menuInOtherComponent"></app-advanced-search>
+    </div>
+  </section>
+  <hr />
+  <div class="my-20" fxLayout="row" fxLayoutAlign="end">
+      <button mat-raised-button color="accent" (click)="openSlidePanel()">
+          <mat-icon>add</mat-icon>
+          ADD NEW PRICING PLAN
+      </button>
+  </div>
+  </ng-container>
+
+  <ng-template #renderingContainer></ng-template>
+
+</section>

@@ -1,0 +1,54 @@
+<div class="my-20" fxLayout="row" fxLayoutAlign="end">
+    <button  mat-raised-button color="accent">
+        Save
+    </button>
+</div>
+<section class="userPermissionTable table-responsive mat-card">
+  <table mat-table [dataSource]="dataSource" matSort class="w-100-p" multiTemplateDataRows>
+
+    <!-- Checked Column -->
+    <ng-container matColumnDef="Checked">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+            <mat-checkbox class="mt-24" [checked]="false"></mat-checkbox>
+            </th>
+        <td mat-cell *matCellDef="let row">
+            <mat-checkbox class="mt-24" [checked]="row.Checked"></mat-checkbox>
+        </td>
+    </ng-container>
+
+    <!--Name Column -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>name</th>
+      <td mat-cell *matCellDef="let row" [matTooltip]="row?.name" [matTooltipPosition]="'above'">
+        {{row?.name || '--' }}
+      </td>
+    </ng-container>
+
+    <!-- description Column -->
+    <ng-container matColumnDef="description">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>description</th>
+      <td mat-cell *matCellDef="let row" [matTooltip]="row?.description" [matTooltipPosition]="'above'">
+        {{row?.description}}
+      </td>
+    </ng-container>
+
+    <!-- Permissions Column -->
+    <ng-container matColumnDef="permission">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Permissions</th>
+      <td mat-cell *matCellDef="let row">
+        <mat-chip-list>
+          <mat-chip class="py-4 px-16 fuse-white-fg"
+            [ngClass]="(row?.Checked ==  true) ? 'green-600' : 'red-500'">
+            <small>{{(row.Checked) ? 'Allow' : 'Denied'}}</small> 
+          </mat-chip>
+        </mat-chip-list>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedCol; sticky:true"></tr>
+    <tr mat-row  (mouseenter)="actionControlOnHover = i"  (mouseleave)="actionControlOnHover = -1" 
+    *matRowDef="let row; columns: displayedCol;let i = index">
+    </tr>
+  </table>
+</section>
+<app-scroll-bottom></app-scroll-bottom>

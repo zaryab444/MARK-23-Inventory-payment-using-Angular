@@ -1,0 +1,12 @@
+<section class="createPartner w-100-p">
+    <section fxLayout="row" fxLayoutAlign="space-between center">
+        <h2>Add Partner</h2>
+        <div>
+            <button mat-icon-button (click)= "closeSlidingPanel()" >
+            <mat-icon aria-label="Close">close</mat-icon>
+            </button>
+        </div>
+    </section>
+    <hr />
+    <app-partner-form (submitForm)="createPartner($event)"></app-partner-form>
+</section>

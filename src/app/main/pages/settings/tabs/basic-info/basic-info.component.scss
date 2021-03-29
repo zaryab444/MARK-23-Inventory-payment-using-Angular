@@ -1,0 +1,59 @@
+@import "../../../../../../assets/variables/_variables";
+.basicInfo{
+    .mat-card{
+        position: relative;
+        .card-content{
+            opacity: 0.7;
+            ngx-dropzone{
+                border-radius: 100%;
+                width: 140px;
+                height: 140px;
+                margin: auto;
+                border-color: $fgColor;
+                ngx-dropzone-label{
+                   .mat-icon{
+                       font-size: 40px;
+                       width: 40px;
+                       height: 40px;
+                   } 
+                }
+            }
+        }
+        ngx-dropzone-image-preview{
+            ngx-dropzone-remove-badge{
+                top: -10px;
+                right: 15px;
+            }
+        }
+        .uploadedFile{
+            height: 140px;
+            margin: 10px;
+            img{
+                border-radius: 5px;
+                width: 140px;
+                height: 100%;
+        
+            }
+            .resetImageIcon{
+                display: none;
+            }
+            &:hover{
+                opacity: .8;
+                .resetImageIcon{
+                    display: block;
+                    position: absolute;
+                    right: 40px;
+                    top: 12px;
+                    background: #aeaeae;
+                    border-radius: 100%;
+                    color: white;
+                    font-size: 17px;
+                    line-height: inherit;
+                    cursor: pointer;
+                }
+            }
+
+        }
+  
+    } 
+}

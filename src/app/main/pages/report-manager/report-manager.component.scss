@@ -1,0 +1,32 @@
+.rptManagement{
+
+    mat-card{
+        margin-top:15px !important;
+    }
+
+    .reportCard {
+        mat-card-content{
+            background-image: url("../../../../assets/images/cards/bg.png");
+        }
+    } 
+
+.iconBtn{
+    position: absolute;
+    top: 30px;
+    left: 25px;
+    background-color:white !important;
+    color: gray !important;
+    width: 60px !important;
+    height: 60px !important;
+    mat-icon{
+    position: absolute;
+    font-size: 34px;
+    left: 13px;
+    top: 13px;
+    }
+}
+.heading{
+    margin-left:30px !important;
+}
+
+}

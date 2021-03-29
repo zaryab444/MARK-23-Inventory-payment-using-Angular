@@ -1,0 +1,23 @@
+<section class="proxyBlocking w-100-p">
+    <div class="outer-layer m-20 px-20 pb-20">
+        <h2 >Proxy Blocking </h2>
+        <hr />
+        <p>
+            Proxy Blocking controls whether transactions originating from proxy servers and computers to be known sources of fraud are blocked. When the gateway is aware of proxy servers that are known sources of fraud, the IP addresses are added to our base level of blocked IPs.
+        </p>
+        <p>
+            Proxy servers act as an intermediate and are used to hide the true source of a transaction. Such servers are legitimately used to surf the internet anonymously, but they are also frequently used to commit online fraud. Some proxy servers are from commercial services, but most are home computers or business systems that been compromised and are being used without the owner’s knowledge.
+        </p>
+        <p>
+            By activating this option you are agreeing to have all transactions blocked/declined that originate from any IP on the base list. Transactions that are declined due to this settings will be declined with the message “Declined IP from blocked Proxy server”. 
+
+            This list cannot be modified, if you have this feature active and want to accept transactions from a blocked IP then you must set the feature to Inactive.
+        </p>
+        <!-- lock controls -->
+        <app-lock-controls></app-lock-controls>
+
+        <!-- ip-blocking-status -->
+        <app-ip-blocking-status></app-ip-blocking-status>
+    </div>
+</section>
+

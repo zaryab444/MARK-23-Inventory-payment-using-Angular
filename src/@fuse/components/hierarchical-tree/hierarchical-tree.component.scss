@@ -1,0 +1,84 @@
+@import "../../../assets/variables/_variables";
+
+.hierarchy{
+    .selectedMode{
+        cursor: pointer;
+        font-size: 14px;
+    }
+}
+.hierarchy-tree{
+    overflow: auto;
+    max-height: 250px;
+    mat-nested-tree-node[aria-expanded="true"]{
+        li:first-child{
+            .mat-tree-node{
+                &+ul{
+                    &.collapsed{
+                        mat-tree-node{
+                            display: none !important;
+                        }
+                        mat-nested-tree-node{
+                            @extend mat-tree-node;
+                        }
+                   
+                    }
+                    &.expanded{
+                        mat-tree-node{
+                            display: block !important;
+                            & + ul{
+                                display: none !important;
+                            }
+                        }
+                        mat-nested-tree-node{
+                            @extend mat-tree-node;
+                        }
+                    }
+                }
+
+            }
+        }
+    }
+
+    .hierarchy-tree-invisible {
+        display: none;
+    }
+   ul,li {
+        margin-top: 0;
+        margin-bottom: 0;
+        list-style-type: none;
+        mat-icon{
+            color:  $fgColor;
+        }
+    }
+}
+.tree-panel{
+    top: 17px;
+    width: 100%;
+    max-width: unset !important;  
+    width: calc(100% - 65px);
+    position: absolute;
+    right: 0;
+    left: 0;
+    button.active{
+        background-color: rgba($color: #000000, $alpha: .04) !important;
+        color: $fgColor !important;
+    }
+    .searching{
+        padding: 0 1.8rem;
+        mat-form-field{
+            display: block;
+        }
+        hr{
+            height: 1px;
+            background-color: $fgColor;
+            border: $fgColor 1px solid;
+        }
+    }
+
+}
+:host ::ng-deep .search-highlight{
+    color: $fgColor !important;
+  }
+.search-highlight {
+    color: $fgColor !important;
+}

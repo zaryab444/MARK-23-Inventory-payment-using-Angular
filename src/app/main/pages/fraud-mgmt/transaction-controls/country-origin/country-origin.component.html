@@ -1,0 +1,26 @@
+<section class="countryOrigin w-100-p" >
+    <div class="outer-layer m-20 px-20 pb-20">
+        <h2>Country of Origin Blocking</h2>
+        <hr />
+        <p> 
+            This allows you to block transactions originating from selected countries. The country of origin is determined by the IP address of the user.
+        </p>
+        <!-- <app-overlay-lock name="overlay-country" position="right"></app-overlay-lock> -->
+        <!-- lock controls -->
+        <app-lock-controls *ngIf="lockComponent" [disableForms]="disableForms" [lockingDetails]="lockingDetails"></app-lock-controls>
+
+        <!-- ip-blocking-status -->
+        <!-- <app-country-status *ngIf="fraudStatusComponent"  [fraudStatus]="fraudStatus"> </app-country-status> -->
+
+         <!-- app-ip-address -->
+         <p>
+            To select a country, click on the country from the All Counties list and click Add button. <br>
+            To remove a country that has already been selected, click on the country from the Selected Countries list and click Remove button.
+         </p>
+         <app-country-blocking-ip></app-country-blocking-ip>
+
+    </div>
+</section>
+
+
+   <app-overlay-lock name="overlay-country" position="right" *ngIf="currentUser.UserRoleId == 2 && lockingDetails?.isActive"></app-overlay-lock>

@@ -1,0 +1,150 @@
+
+        <div class="my-20" fxLayout="row" fxLayoutAlign="space-between center" >
+          <div fxLayout="row">
+            <mat-icon  class = "export-Icon"  (click)= "exportFile('pdf')" [svgIcon]="'exportpdf'" [matTooltip]= "'Export to PDF'"></mat-icon> 
+            <mat-icon   class = "export-Icon"  (click)= "exportFile('csv')" [svgIcon]="'exportexcel'" [matTooltip]= "'Export to CSV'"></mat-icon> 
+            </div>
+        <mat-paginator  [pageSize]="100" 
+          [pageSizeOptions]="[100, 150, 200, 250]" class="ml-auto">
+        </mat-paginator>
+        </div>
+      
+      <!-- <mat-paginator [pageSize]="100" [pageSizeOptions]="[100, 150, 200, 250]"></mat-paginator>     -->
+      <section class="allDisputesTable table-responsive mat-card">
+          <table mat-table [dataSource]="dataSource" matSort class="w-100-p">
+    
+      <ng-container matColumnDef="Dispute.amount">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header="Dispute.amount" style="text-align: center !important;"> Amount </th>
+        <td mat-cell *matCellDef="let row" style="text-align: center !important;"> 
+            {{(row?.Dispute?.amount / 100) | currency}} </td>
+      </ng-container>
+      <ng-container matColumnDef="Info.MerchantUserName">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header="Info.MerchantUserName"> Merchant Name </th>
+        <td mat-cell *matCellDef="let row" >
+               {{row?.Info?.MerchantUserName || '--'}} 
+           </td>
+      </ng-container>
+     
+      <ng-container matColumnDef="Info.CardType">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header="Info.CardType"> Last 4 Digits </th>
+        <td mat-cell *matCellDef="let row" > <mat-icon class="cusIcon" [svgIcon]="
+          (row?.Info?.CardType == 'visa' || row?.Info?.CardType == 'Visa') ? 
+          'visa' :  (row?.Info?.CardType == 'mastercard' || row?.Info?.CardType == 'MasterCard') ? 
+          'mastercard'  :  (row?.Info?.CardType == 'amex' || row?.Info?.CardType == 'AmericanExpress') ? 
+          'amex'  :  (row?.Info?.CardType == 'jcb') ? 
+          'jcb'  :  (row?.Info?.CardType == 'discover' || row?.Info?.CardType == 'Discover') ? 
+          'discover'  :  (row?.Info?.CardType == 'diners') ? 
+          'diners'  :  'nocardfound' "></mat-icon> **** {{row?.Info?.Last4Digit}} </td>
+      </ng-container>
+    
+      <ng-container matColumnDef="Dispute.reason">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header="Dispute.reason"> Reason </th>
+        <td mat-cell *matCellDef="let row" > {{row?.Dispute?.reason}} </td>
+      </ng-container>
+
+ <ng-container matColumnDef="Dispute.created">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header="Dispute.created"> Disputed On </th>
+    <td mat-cell *matCellDef="let row" > {{row?.Dispute?.created * 1000 | date:'MM/dd/yyyy'}} </td>
+  </ng-container>
+
+      <ng-container matColumnDef="Dispute.status">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header="Dispute.status">Status</th>
+        <td mat-cell *matCellDef="let row;let ind = index" >
+            <ng-template [ngIf]="ind != actionControlOnHover" [ngIfElse]="actionControl">
+                <mat-chip-list>
+                    <mat-chip class="py-4 px-16 chip fuse-white-fg "  
+                    [ngClass]="(row?.Dispute?.status == 'needs_response' || row?.Dispute?.status == 'warning_needs_response') ? 
+                    'green-600' :  (row?.Dispute?.status == 'under_review' || row?.Dispute?.status == 'warning_under_review') ?
+                     'orange-500'  :  (row?.Dispute?.status == 'charge_refunded') ? 
+                     'cyan-300' : (row?.Dispute?.status == 'won') ? 
+                     'cyan-500' : 'red-500'">
+                     <small>
+                        {{(row?.Dispute?.status == 'needs_response' || row?.Dispute?.status == 'warning_needs_response') ? 
+                        'Open' :  (row?.Dispute?.status == 'under_review' || row?.Dispute?.status == 'warning_under_review') ?
+                         'Reviewing'  :  (row?.Dispute?.status == 'charge_refunded') ? 
+                         'Closed' : (row?.Dispute?.status == 'won') ? 
+                         'Won' : 'Lost'}}
+                     </small>
+                    </mat-chip>
+                </mat-chip-list>
+            </ng-template>
+             <ng-template #actionControl>
+              <div [@fadeIn]>
+                <button mat-icon-button matTooltip="Dispute Details" aria-label="details"   
+             [routerLink]="'/pages/report-manager/disputes/disputeDetail'" >
+                <mat-icon>arrow_forward</mat-icon> 
+                </button>
+        
+              </div>
+            </ng-template>
+           </td>
+      </ng-container>
+     
+      <ng-container matColumnDef="Action">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Action  </th>
+        <td mat-cell *matCellDef="let row;let ind = index" > 
+            <button mat-button
+            color="primary" [disabled]="(row?.Dispute?.status == 'won' || row?.Dispute?.status == 'lost')"
+            matTooltip="Reverse Transaction" class="chip grey-300-bg"
+            (click)="openReverseDialog(row,1)" ><mat-icon>rotate_left</mat-icon>
+            <small> Reverse transfer</small>
+            </button>  
+        </td>
+      </ng-container>
+     
+     
+      <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky:true"></tr>
+      <tr mat-row  (mouseenter)="actionControlOnHover = i"  (mouseleave)="actionControlOnHover = -1" 
+      *matRowDef="let row; columns: displayedColumns; let i = index">
+      </tr>
+    </table>
+    </section>
+    
+    <ng-template #reverseDialog>
+      <div class="dialog-content-wrapper">
+        <mat-toolbar class="mat-accent">
+          <mat-toolbar-row fxFlex fxLayout="row" fxLayoutAlign="space-between center">
+            <span class="title">Reverse Transfer: {{this.reverseForm.value.Amount | currency}},  Dispute Fee: ${{topDisputeFee | currency:'':''}}
+            </span>
+            <button mat-icon-button aria-label="Close dialog" (click)="dialogRef.close()">
+              <mat-icon>close</mat-icon>
+            </button>
+          </mat-toolbar-row>
+        </mat-toolbar>
+    
+        <div mat-dialog-content class="p-24 m-0">
+          <form name="reverseForm" fxLayout="column" fxLayoutGap="20px" [formGroup]="reverseForm">
+          
+           
+            <div class="inlineFormfield">
+                Are you sure you want to reverse   
+            <mat-form-field appearance="legacy" fxFlex="15">
+                <input
+             #amount
+            type="Amount" matInput formControlName="Amount" 
+            currencyMask [options]="{ align: 'left', prefix: '$' }" required> 
+              
+              </mat-form-field>
+            against dispute?
+            <br/> Please note a dispute fee would be applied.
+        </div>
+            <mat-checkbox (click)= "showDisputeAmount()" formControlName="ChargeDisputeFee" >${{DisputeFee | currency:'':''}} Dispute Fee</mat-checkbox>
+    
+          </form>
+          <div mat-dialog-actions fxLayout="row" fxLayoutAlign="end center">
+            <button mat-raised-button class="mr-8 accent-alpha-bg" aria-label="Cancel" (click)="dialogRef.close()">
+              Cancel
+            </button>
+            <button mat-raised-button color="accent" aria-label="Reverse"
+              [disabled]="reverseForm.invalid || !reverseForm.controls['Amount'].value || this.reverseForm.value.Amount > selectedToReverse.Info.RemainingAmount" (click)="reverse()">
+              Reverse
+            </button>
+          </div>
+        </div>
+    
+    
+      </div>
+    </ng-template>
+
+
+  

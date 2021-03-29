@@ -1,0 +1,97 @@
+@import "src/@fuse/scss/fuse";
+app-twostep {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url("/assets/images/backgrounds/background.svg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    // background-color: blue ;
+    .factor-form-wrapper {
+        height: 100%;
+        // background-image: url("paper.gif");;
+        .Otp-form {
+            background-color: #FFFFFF;
+            width: 415px;
+            max-width: 415px;
+            padding: 32px;
+            text-align: center;
+            @include mat-elevation(16);
+    
+            @include media-breakpoint('xs') {
+                padding: 24px;
+                width: 100%;
+            }
+            .logo {
+                width: 140px;
+                margin: 20px auto;
+                img{
+                    width: 140px;
+                }
+            }
+            .title {
+                font-size: 20px;
+                margin: 16px 0 5px 0;
+            }
+            .sub-title{
+                margin-bottom: 25px;
+            }
+    
+            form {
+                width: 100%;
+            }
+        }
+        .Qr-form{
+            background-color: #FFFFFF;
+            width: 800px;
+            max-width: 800px;
+            padding: 32px;
+            @include mat-elevation(16);
+            @include media-breakpoint('xs') {
+                padding: 24px;
+                width: 100%;
+            }
+            .title {
+                font-size: 20px;
+                margin: 16px 0 5px 0;
+            }
+        }
+    }
+  
+    .otp-input {
+        margin: 0px 0px;
+        text-align: center;
+        line-height: 40px;
+        font-size: 30px;
+        border: solid 1px #ccc;
+        box-shadow: 0 0 1px #ccc inset;
+        outline: none;
+        width: 12%;
+        transition: all .2s ease-in-out;
+        border-radius: 3px;
+        height: 63px;
+   
+    }
+
+    ng-otp-input{
+       div{
+           input{
+            height: 63px !important;
+
+           }
+     
+       }
+      
+    }
+}
+.QrCode-image{
+    height: 80%;
+    width: 75%;
+    margin: 30px;
+}
+.resend{
+    margin-left: 130px;
+}

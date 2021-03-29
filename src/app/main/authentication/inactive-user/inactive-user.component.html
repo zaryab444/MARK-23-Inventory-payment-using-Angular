@@ -1,0 +1,25 @@
+<section class="inactive" [@fadeIn] >
+    
+    
+<div fxLayout="row" fxLayoutAlign="start" class="p-40">
+
+<div fxFlex="40"  class="ml-100 leftcontent" *ngIf="showContent">
+<p class="heading">Uh-oh...</p>
+<p class="subheading">Account not Active</p>
+<p>For any support or queries, kindly contact<br>
+<a>support@paynomix.com</a></p>
+
+<button mat-raised-button class="logoutBtn" color="accent" 
+[routerLink]="'login'"
+>Logout</button>
+</div>
+
+<div fxFlex="60">
+
+<img  src="assets/images/inactive.svg" (load)="onImageLoad()">
+
+</div>
+
+    </div>
+
+</section>

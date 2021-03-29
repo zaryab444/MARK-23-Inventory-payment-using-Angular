@@ -1,0 +1,413 @@
+
+
+<section class="dashboard w-100-p">
+
+    <section fxLayout="row" fxLayoutALign="space-between center">
+        
+     
+        <h2 *ngIf="showBars">Dashboard</h2>
+        
+        <ngx-shimmer-loading   *ngIf="!showBars"
+        [direction]="'ltr'" 
+        [shape]="'rect'" 
+        [width]="'150px'" [height]="'20px'" ></ngx-shimmer-loading>
+
+
+
+        <div class="range">
+            <!-- <mat-date-range-input >
+                <input matStartDate placeholder="Start date">
+                <input matEndDate placeholder="End date">
+            </mat-date-range-input>
+              
+            <mat-date-range-picker #picker></mat-date-range-picker> -->
+        </div>
+    </section>
+
+    <section class="transactionGrid" fxLayout="column" fxLayoutAlign="start"
+    fxLayout.gt-sm="row" fxLayoutAlign.gt-sm="start start"
+   
+    >
+
+        <!-- Widget 1 -->
+        
+      
+        <div class="widget" fxFlex="100" fxFlex.gt-sm="33" >
+
+    <div *ngIf="!showBars" class="fuse-card auto-width mb-32 px-4 py-4" [ngClass.gt-sm]="'mb-0 mr-32'">
+        <ngx-shimmer-loading  [direction]="'ltr'" [shape]="'rect'" [width]="'100%'" [height]="'80px'"></ngx-shimmer-loading>
+        <ngx-shimmer-loading  [direction]="'ltr'" [shape]="'rect'" [width]="'100%'" [height]="'10px'" ></ngx-shimmer-loading>
+        <ngx-shimmer-loading  [direction]="'ltr'" [shape]="'rect'" [width]="'100%'" [height]="'10px'" ></ngx-shimmer-loading>
+        <ngx-shimmer-loading  [direction]="'ltr'" [shape]="'rect'" [width]="'100%'" [height]="'10px'" ></ngx-shimmer-loading>
+        <ngx-shimmer-loading  [direction]="'ltr'" [shape]="'rect'" [width]="'100%'" [height]="'10px'" ></ngx-shimmer-loading>
+   
+       
+    
+    </div>
+
+            <div *ngIf="showBars" class="fuse-card auto-width mb-32" [ngClass.gt-sm]="'mb-0 mr-32'">
+
+                <div class="p-16 pb-0" [ngClass]="{'pb-16': !showBars}" fxLayout="column" fxLayoutAlign="end start">
+
+                        <div class="h3 secondary-text">Total Transactions (Last 7 days)</div>
+                     
+                </div>
+
+                <div class="h-80 w-100-p" *ngIf="showBars">
+                    <canvas baseChart  
+                            [datasets]="widgets.widget2.datasets"
+                            [labels]="widgets.widget2.labels"
+                            [colors]="widgets.widget2.colors"
+                            [options]="widgets.widget2.options"
+                            [chartType]="widgets.widget2.chartType">
+                    </canvas>
+                </div>
+
+                <div class="p-16 border-top" fxLayout="row" fxLayoutAlign="start center">
+                  <div fxFlex="60" fxLayout="row"> <span class="h5 secondary-text text-truncate">
+                       Volume:
+                    </span>
+                    <span class="h5 ml-4">
+                        {{dashboardUserStats?.Widget?.TotalTransactionVolume || 0 | currency}}  
+                    </span>
+                </div> 
+                <div fxFlex="40" fxLayout="row">
+                    <span class="h5 secondary-text text-truncate ">
+                        Count:
+                     </span>
+                     <span class="h5 ml-4">
+                        {{dashboardUserStats?.Widget?.TotalTransaction || 0 | number}}  
+                     </span>
+                    </div>
+                </div>
+                
+            </div>
+
+        </div>
+        <!-- / Widget 1 -->
+
+        <!-- Widget 2 -->
+
+        <div class="widget" fxFlex="100" fxFlex.gt-sm="34" >
+
+            <div *ngIf="!showBars" class="fuse-card auto-width mb-32 px-4 py-4" [ngClass.gt-sm]="'mb-0 mr-32'">
+                <ngx-shimmer-loading  [direction]="'ltr'" [shape]="'rect'" [width]="'100%'" [height]="'80px'"></ngx-shimmer-loading>
+                <ngx-shimmer-loading  [direction]="'ltr'" [shape]="'rect'" [width]="'100%'" [height]="'10px'" ></ngx-shimmer-loading>
+                <ngx-shimmer-loading  [direction]="'ltr'" [shape]="'rect'" [width]="'100%'" [height]="'10px'" ></ngx-shimmer-loading>
+                <ngx-shimmer-loading  [direction]="'ltr'" [shape]="'rect'" [width]="'100%'" [height]="'10px'" ></ngx-shimmer-loading>
+                <ngx-shimmer-loading  [direction]="'ltr'" [shape]="'rect'" [width]="'100%'" [height]="'10px'" ></ngx-shimmer-loading>
+           
+               
+               </div>
+           
+            <div class="fuse-card auto-width mb-32"  *ngIf="showBars" [ngClass.gt-sm]="'mb-0 mr-32'">
+
+                <div class="p-16 pb-0" [ngClass]="{'pb-16': !showBars}" fxLayout="column" fxLayoutAlign="end start">
+
+                        <div class="h3 secondary-text">Successful Transactions (Last 7 days)</div>
+                </div>
+
+                <div class="h-80 w-100-p" *ngIf="showBars">
+                    <canvas baseChart 
+                            [datasets]="widgets.widget3.datasets"
+                            [labels]="widgets.widget3.labels"
+                            [colors]="widgets.widget3.colors"
+                            [options]="widgets.widget3.options"
+                            [chartType]="widgets.widget3.chartType">
+                    </canvas>
+                </div>
+
+           
+                <div class="p-16 border-top" fxLayout="row" fxLayoutAlign="start center">
+                  <div fxFlex="60" fxLayout="row"> <span class="h5 secondary-text text-truncate">
+                       Volume:
+                    </span>
+                    <span class="h5 ml-4">
+                        {{dashboardUserStats?.Widget?.SuccessfulVolume || 0 | currency}}  
+                    </span>
+                </div> 
+                <div fxFlex="40" fxLayout="row">
+                    <span class="h5 secondary-text text-truncate ">
+                        Count:
+                     </span>
+                     <span class="h5 ml-4">
+                        {{dashboardUserStats?.Widget?.SuccessfulTransaction || 0 | number}}  
+                     </span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- / Widget 2 -->
+
+        <!-- Widget 3 -->
+      
+        <div class="widget" fxFlex="100" fxFlex.gt-sm="33">
+            
+            
+            <div *ngIf="!showBars" class="fuse-card auto-width mb-32 px-4 py-4" [ngClass.gt-sm]="'mb-0 mr-32'">
+                <ngx-shimmer-loading  [direction]="'ltr'" [shape]="'rect'" [width]="'100%'" [height]="'80px'"></ngx-shimmer-loading>
+                <ngx-shimmer-loading  [direction]="'ltr'" [shape]="'rect'" [width]="'100%'" [height]="'10px'" ></ngx-shimmer-loading>
+                <ngx-shimmer-loading  [direction]="'ltr'" [shape]="'rect'" [width]="'100%'" [height]="'10px'" ></ngx-shimmer-loading>
+                <ngx-shimmer-loading  [direction]="'ltr'" [shape]="'rect'" [width]="'100%'" [height]="'10px'" ></ngx-shimmer-loading>
+                <ngx-shimmer-loading  [direction]="'ltr'" [shape]="'rect'" [width]="'100%'" [height]="'10px'" ></ngx-shimmer-loading>
+           
+               
+               </div>
+
+            <div class="fuse-card auto-width mb-32"  *ngIf="showBars">
+
+                <div class="p-16 pb-0" [ngClass]="{'pb-16': !showBars}"  fxLayout="column" fxLayoutAlign="end start">
+
+                        <div class="h3 secondary-text">Avg. Transactions (Last 7 days)</div>
+
+                </div>
+
+                <div class="h-80 w-100-p" *ngIf="showBars">
+                    <canvas baseChart
+                            [datasets]="widgets.widget4.datasets"
+                            [labels]="widgets.widget4.labels"
+                            [colors]="widgets.widget4.colors"
+                            [options]="widgets.widget4.options"
+                            [chartType]="widgets.widget4.chartType">
+                    </canvas>
+                </div>
+
+                <div class="p-16 border-top" fxLayout="row" fxLayoutAlign="start center">
+                    <div  fxLayout="row"> <span class="h5 secondary-text text-truncate">
+                         Avg Transaction Amount:
+                      </span>
+                      <span class="h5 ml-4">
+                        {{dashboardUserStats?.Widget?.AvgTransactionAmount || 0 | currency}} 
+                      </span>
+                  </div> 
+                  <!-- <div fxFlex="40" fxLayout="row">
+                      <span class="h5 secondary-text text-truncate ">
+                          Count:
+                       </span>
+                       <span class="h5 ml-4">
+                        {{dashboardUserStats?.Widget?.AvgTransactionAmount || 0 | number}}  
+                       </span>
+                      </div> -->
+                  </div>
+
+            </div>
+
+        </div>
+        <!-- / Widget 3 -->
+
+        
+
+    </section>
+
+    <section class="transactionGrid" fxLayout="column" fxLayoutAlign="start"
+    fxLayout.gt-sm="row" fxLayoutAlign.gt-sm="start start"
+   
+    >
+
+        <!-- Widget 1 -->
+        
+      
+        <div class="widget" fxFlex="100" fxFlex.gt-sm="33" >
+
+    <div *ngIf="!showBars" class="fuse-card auto-width mb-32 px-4 py-4" [ngClass.gt-sm]="'mb-0 mr-32'">
+        <ngx-shimmer-loading  [direction]="'ltr'" [shape]="'rect'" [width]="'100%'" [height]="'80px'"></ngx-shimmer-loading>
+        <ngx-shimmer-loading  [direction]="'ltr'" [shape]="'rect'" [width]="'100%'" [height]="'10px'" ></ngx-shimmer-loading>
+        <ngx-shimmer-loading  [direction]="'ltr'" [shape]="'rect'" [width]="'100%'" [height]="'10px'" ></ngx-shimmer-loading>
+        <ngx-shimmer-loading  [direction]="'ltr'" [shape]="'rect'" [width]="'100%'" [height]="'10px'" ></ngx-shimmer-loading>
+        <ngx-shimmer-loading  [direction]="'ltr'" [shape]="'rect'" [width]="'100%'" [height]="'10px'" ></ngx-shimmer-loading>
+   
+       
+    
+    </div>
+
+            <div *ngIf="showBars" class="fuse-card auto-width mb-32" [ngClass.gt-sm]="'mb-0 mr-32'">
+
+                <div class="p-16 pb-0" [ngClass]="{'pb-16': !showBars}" fxLayout="column" fxLayoutAlign="end start">
+
+                        <div class="h3 secondary-text">Decline Transactions (Last 7 days)</div>
+                     
+                </div>
+
+                <div class="h-80 w-100-p" *ngIf="showBars">
+                    <canvas baseChart  
+                            [datasets]="widgets.widget6.datasets"
+                            [labels]="widgets.widget6.labels"
+                            [colors]="widgets.widget6.colors"
+                            [options]="widgets.widget6.options"
+                            [chartType]="widgets.widget6.chartType">
+                    </canvas>
+                </div>
+
+                <div class="p-16 border-top" fxLayout="row" fxLayoutAlign="start center">
+                  <div fxFlex="60" fxLayout="row"> <span class="h5 secondary-text text-truncate">
+                       Volume:
+                    </span>
+                    <span class="h5 ml-4">
+                        {{dashboardUserStats?.Widget?.DeclineVolume || 0 | currency}} 
+                    </span>
+                </div> 
+                <div fxFlex="40" fxLayout="row">
+                    <span class="h5 secondary-text text-truncate ">
+                        Count:
+                     </span>
+                     <span class="h5 ml-4">
+                        {{dashboardUserStats?.Widget?.Decline || 0 | number}} 
+                     </span>
+                    </div>
+                </div>
+                
+            </div>
+
+        </div>
+        <!-- / Widget 1 -->
+
+        <!-- Widget 2 -->
+
+        <div class="widget" fxFlex="100" fxFlex.gt-sm="34" >
+
+            <div *ngIf="!showBars" class="fuse-card auto-width mb-32 px-4 py-4" [ngClass.gt-sm]="'mb-0 mr-32'">
+                <ngx-shimmer-loading  [direction]="'ltr'" [shape]="'rect'" [width]="'100%'" [height]="'80px'"></ngx-shimmer-loading>
+                <ngx-shimmer-loading  [direction]="'ltr'" [shape]="'rect'" [width]="'100%'" [height]="'10px'" ></ngx-shimmer-loading>
+                <ngx-shimmer-loading  [direction]="'ltr'" [shape]="'rect'" [width]="'100%'" [height]="'10px'" ></ngx-shimmer-loading>
+                <ngx-shimmer-loading  [direction]="'ltr'" [shape]="'rect'" [width]="'100%'" [height]="'10px'" ></ngx-shimmer-loading>
+                <ngx-shimmer-loading  [direction]="'ltr'" [shape]="'rect'" [width]="'100%'" [height]="'10px'" ></ngx-shimmer-loading>
+           
+               
+               </div>
+           
+            <div class="fuse-card auto-width mb-32"  *ngIf="showBars" [ngClass.gt-sm]="'mb-0 mr-32'">
+
+                <div class="p-16 pb-0" [ngClass]="{'pb-16': !showBars}" fxLayout="column" fxLayoutAlign="end start">
+
+                        <div class="h3 secondary-text">Refund Transactions (Last 7 days)</div>
+                </div>
+
+                <div class="h-80 w-100-p" *ngIf="showBars">
+                    <canvas baseChart 
+                            [datasets]="widgets.widget7.datasets"
+                            [labels]="widgets.widget7.labels"
+                            [colors]="widgets.widget7.colors"
+                            [options]="widgets.widget7.options"
+                            [chartType]="widgets.widget7.chartType">
+                    </canvas>
+                </div>
+
+           
+                <div class="p-16 border-top" fxLayout="row" fxLayoutAlign="start center">
+                  <div fxFlex="60" fxLayout="row"> <span class="h5 secondary-text text-truncate">
+                       Volume:
+                    </span>
+                    <span class="h5 ml-4">
+                        {{dashboardUserStats?.Widget?.RefundVolume || 0 | currency}} 
+                    </span>
+                </div> 
+                <div fxFlex="40" fxLayout="row">
+                    <span class="h5 secondary-text text-truncate ">
+                        Count:
+                     </span>
+                     <span class="h5 ml-4">
+                        {{dashboardUserStats?.Widget?.Refund || 0 | number}} 
+                     </span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- / Widget 2 -->
+
+        <!-- Widget 3 -->
+      
+        <div class="widget" fxFlex="100" fxFlex.gt-sm="33">
+            
+            
+            <div *ngIf="!showBars" class="fuse-card auto-width mb-32 px-4 py-4" [ngClass.gt-sm]="'mb-0 mr-32'">
+                <ngx-shimmer-loading  [direction]="'ltr'" [shape]="'rect'" [width]="'100%'" [height]="'80px'"></ngx-shimmer-loading>
+                <ngx-shimmer-loading  [direction]="'ltr'" [shape]="'rect'" [width]="'100%'" [height]="'10px'" ></ngx-shimmer-loading>
+                <ngx-shimmer-loading  [direction]="'ltr'" [shape]="'rect'" [width]="'100%'" [height]="'10px'" ></ngx-shimmer-loading>
+                <ngx-shimmer-loading  [direction]="'ltr'" [shape]="'rect'" [width]="'100%'" [height]="'10px'" ></ngx-shimmer-loading>
+                <ngx-shimmer-loading  [direction]="'ltr'" [shape]="'rect'" [width]="'100%'" [height]="'10px'" ></ngx-shimmer-loading>
+           
+               
+               </div>
+
+            <div class="fuse-card auto-width mb-32"  *ngIf="showBars">
+
+                <div class="p-16 pb-0" [ngClass]="{'pb-16': !showBars}"  fxLayout="column" fxLayoutAlign="end start">
+
+                        <div class="h3 secondary-text">Void Transactions (Last 7 days)</div>
+
+                </div>
+
+                <div class="h-80 w-100-p" *ngIf="showBars">
+                    <canvas baseChart
+                            [datasets]="widgets.widget8.datasets"
+                            [labels]="widgets.widget8.labels"
+                            [colors]="widgets.widget8.colors"
+                            [options]="widgets.widget8.options"
+                            [chartType]="widgets.widget8.chartType">
+                    </canvas>
+                </div>
+
+                <div class="p-16 border-top" fxLayout="row" fxLayoutAlign="start center">
+                    <div fxFlex="60" fxLayout="row"> <span class="h5 secondary-text text-truncate">
+                         Volume:
+                      </span>
+                      <span class="h5 ml-4">
+                        {{dashboardUserStats?.Widget?.VoidVolume || 0 | currency}} 
+                      </span>
+                  </div> 
+                  <div fxFlex="40" fxLayout="row">
+                      <span class="h5 secondary-text text-truncate ">
+                          Count:
+                       </span>
+                       <span class="h5 ml-4">
+                        {{dashboardUserStats?.Widget?.Void || 0 | number}} 
+                       </span>
+                      </div>
+                  </div>
+
+            </div>
+
+        </div>
+        <!-- / Widget 3 -->
+
+        
+
+    </section>
+
+    <section class="transactionHistory fuse-card auto-width mb-32 px-4 py-4" *ngIf="!dashboardUserStats">
+        <app-shimmer-loader [noOfTimes]="15">
+
+        </app-shimmer-loader>
+
+</section>
+   
+    <section class="transactionHistory fuse-card auto-width mb-32" *ngIf="dashboardUserStats">
+        <div class="px-20">
+            <h2>Transaction History</h2>
+        </div>
+        <div class="h-368 pb-16" >
+            <canvas baseChart 
+                    [datasets]="dashboardUserStats?.Volume"
+                    [labels]="transactionGraphVolumeLabel"
+                    [colors]="widgets.widget5.colors"
+                    [options]="widgets.widget5.options"
+                    [chartType]="widgets.widget5.chartType">
+            </canvas>
+        </div>
+
+    </section>
+    <section class="recentTransaction fuse-card auto-width" [hidden]="!dashboardUserStats">
+        <div class="px-20 pt-20" fxLayout="row" fxLayoutAlign="space-between center">
+            <h2 class="m-0">Recent Transactions</h2>
+            <button mat-raised-button color="accent" [routerLink]="['/pages/transaction/transaction-list']">View All Transactions</button>
+        </div>
+        <ng-template #renderingContainer></ng-template>
+    </section>
+
+
+</section>
+        
+
+

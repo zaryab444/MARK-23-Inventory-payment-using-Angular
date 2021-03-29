@@ -1,0 +1,32 @@
+
+<section  class="disputes w-100-p">
+<ng-template [ngIf]="!isAdmin" [ngIfElse]="noPermission">
+<section>
+    <section fxLayout="row" fxLayoutALign="space-between center">
+        <h2>Disputes</h2>
+        <div class="searchBox"></div>
+      </section>
+    <hr />
+     <!-- Date Range Section -->
+   
+    <app-disputes-list></app-disputes-list>
+</section>
+</ng-template>
+<ng-template #noPermission>
+    <div class="h-100-p overLaybg">
+    <section fxLayout="column" class="headingDispute" fxLayoutALign="space-between center">
+        <h2>Disputes</h2>
+      <hr>
+      </section>
+    <div fxLayout="column" fxLayoutAlign="center center" class="" style="color:white;">
+       <div>
+        <mat-icon class="lockIcon">lock</mat-icon>
+    </div>
+        <h1>  
+            Please select Reseller from Global Hierarchy Search
+        </h1>
+        
+    </div>
+</div>
+    </ng-template>
+</section>

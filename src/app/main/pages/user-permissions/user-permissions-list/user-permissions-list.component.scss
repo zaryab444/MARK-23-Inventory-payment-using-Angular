@@ -1,0 +1,15 @@
+.outer-layer {
+    &.boxStyle1 {
+        width: 5% !important;
+        border-radius: 5px !important;
+        padding: 8px !important;
+        background-color: rgba(0, 0, 0, 0.04);
+      }
+    &.boxStyle {
+        width: 25% !important;
+        border-radius: 5px !important;
+        padding: 8px !important;
+        background-color: rgba(0, 0, 0, 0.04);
+        margin-left: 10px;
+      }
+}

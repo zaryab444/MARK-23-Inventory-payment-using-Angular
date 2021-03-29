@@ -1,0 +1,58 @@
+<section class="merchantInfo">
+
+    <form fxLayout="column" fxLayoutAlign="start"
+     name="form" [formGroup]="merchantInfoForm">
+   
+        <div fxLayout.sm="row" fxLayout.gt-sm="row" fxLayout="column" fxLayoutAlign="space-between stretch" fxLayoutAlign.sm="space-between center" fxLayoutAlign.gt-sm="space-between center" fxFlex="1 0 auto">
+           
+            <mat-form-field appearance="outline" fxFlex.gt-sm="33" fxFlex.sm="33" [ngClass.sm]="'pr-4'" [ngClass.gt-sm]="'pr-4'">
+                <mat-label>Company Name</mat-label>
+                <input class="text-capitalize" matInput formControlName="MerchantUserName" required [maxlength]="globalConfig.validator.maxFieldLength" >
+                <mat-error *ngIf="merchantInfoForm.get('MerchantUserName').hasError('required')">Company Name is required!</mat-error>
+                <mat-error *ngIf="!merchantInfoForm.get('MerchantUserName').hasError('required') && merchantInfoForm.get('MerchantUserName').hasError('maxlength')" > Company Name should have maximun length of 
+                    {{globalConfig?.validator?.maxFieldLength}} </mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" fxFlex.gt-sm="34" fxFlex.sm="34" [ngClass.sm]="['pr-4', 'pl-4']" [ngClass.gt-sm]="['pr-4', 'pl-4']">
+                <mat-label>Merchant Email</mat-label>
+                <input matInput nospace type="email" formControlName="MerchantEmail" required>
+                <mat-error *ngIf="merchantInfoForm.get('MerchantEmail').hasError('required')">
+                    Merchant Email is required!
+                </mat-error>
+                <mat-error
+                    *ngIf="!merchantInfoForm.get('MerchantEmail').hasError('required') &&
+                            (merchantInfoForm.get('MerchantEmail').hasError('email') || merchantInfoForm.get('MerchantEmail').hasError('pattern'))">
+                    Please enter a valid email address
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" fxFlex.gt-sm="33" fxFlex.sm="33" [ngClass.sm]="'pl-4'" [ngClass.gt-sm]="'pl-4'">
+                <mat-label>Pricing Plan</mat-label>
+                <mat-select formControlName="PricingPlanID" required (selectionChange)="setPricingPlanName()">
+                    <mat-option [value]="item.PricingPlanID" *ngFor="let item of pricingPlans">{{item.PricingTitle}}</mat-option>
+                </mat-select>
+                <mat-error>Pricing Plan is required!</mat-error>
+            </mat-form-field>
+        </div>
+
+
+        <div fxLayout.sm="row" fxLayoutAlign.sm="center center" fxLayout.gt-sm="row" fxLayoutAlign.gt-sm="center center" fxLayout="column" fxLayoutAlign="center stretch">
+        
+            <button mat-raised-button matStepperNext class="my-4"color="accent" [disabled]="merchantInfoForm.invalid"
+                aria-label="Next">
+                Next
+            </button>
+            <button mat-raised-button 
+            *ngIf="merchantInfo && idparam"
+            (click)="saveAndexit()"
+             class="ml-8"color="accent" 
+            [disabled]="merchantInfoForm.invalid"
+            aria-label="Save & Exit">
+            Save & Exit
+        </button>
+        </div>
+
+    </form>
+
+</section>
+

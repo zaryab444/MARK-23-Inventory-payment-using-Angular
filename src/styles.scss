@@ -1,0 +1,162 @@
+// Import Fuse core library
+@import "./assets/variables/_variables";
+
+app-pages{
+    width: 100%;
+    .mat-tab-group{
+      .mat-tab-label-active{
+          color: $fgColor !important;
+          background-color: rgba($color: $fgColor, $alpha: 0.05);
+      }
+      .mat-ink-bar{
+          background-color: $fgColor !important;
+      }
+    }
+    .mat-standard-chip{
+      min-height: 26px;
+    }
+    .text-underline{
+      border-bottom: 2px solid $fgColor;
+      display: inline-block;
+      padding: 5px 0
+    }
+    .outer-layer{
+        border: 1px solid #eee;
+        border-radius: 3px;
+        .mat-form-field{
+          textarea{
+            resize: none;
+          }
+        }
+    }
+    .table-responsive {
+      //  max-height: calc(100vh - 342px);
+        overflow: auto;
+        .mat-row{
+          &:hover{
+            transform: scale(1);
+            box-shadow: 0px 1px 6px 1px rgba(0, 0, 0, 0.1);
+            background-color:#f5f3f3 !important;
+            transition: all 600ms 200ms  ease-out;
+          }
+        }
+        .mat-cell,.mat-header-cell
+          {
+           
+            padding: 5px;
+            // text-align: center;
+            // & *{
+            //  justify-content: end;
+            // }
+          }
+    }
+}
+.accent-alpha-bg{
+    background-color: rgba($color: #f5f5f5, $alpha: 1) !important;
+}
+fieldset{
+  border-radius: 5px;
+  border:1px solid rgba(0,0,0,.12);
+  legend{
+      padding: 0 5px;
+  }
+}
+.mat-dialog-container {
+  padding: 0 !important;
+  .dialog-content-wrapper{
+    div[mat-dialog-content]{
+      max-height: calc(100vh - 200px);
+      overflow-y: auto;
+    }
+      .title{
+          font-weight: normal !important;
+      }
+  }
+}
+
+.mat-datepicker-content {
+    height: 478px !important;
+}
+tr.mat-row, tr.mat-footer-row {
+  height: 52px !important;
+}
+
+  .cdk-overlay-dark-backdrop {
+    /* background: rgba(0, 0, 0, 0.32); old over lay color */
+    background: rgba(9, 30, 66, 0.54) !important;
+}
+.searchheaders{
+  max-width: 300px;
+  width: 300px;
+  padding: 2px 0px;
+  background: #fdfcfc;
+  border-radius: 4px;
+  border: 1px solid #dbdada;
+}
+.mat-menu-panel {
+  min-width: 130px;
+  max-width: 300px !important;
+  max-height: 455px !important;
+}
+
+.blue-icon{
+color:#039be5;
+}
+.grey-icon{
+  color:gray;
+}
+
+mat-tooltip-component .mat-tooltip.customTooltip {
+    color:black !important;
+    background-color:#fee9eb !important;
+    width:400px !important;
+    min-width:400px !important;
+    max-width: 400px !important;
+    font-size: 14px;
+}
+.export-Icon{
+  vertical-align: middle!important;
+  height: 36px!important;
+  width: 36px!important;
+  margin-right:10px;
+  cursor: pointer;
+}
+
+.mat-select-search-inner{
+    height: 45px !important;
+   
+  } 
+.search-highlight {
+    color: $fgColor !important;
+}
+body.theme-default .mat-flat-button.mat-primary.mat-button-disabled, body.theme-default .mat-flat-button.mat-accent.mat-button-disabled, body.theme-default .mat-flat-button.mat-warn.mat-button-disabled, body.theme-default .mat-flat-button.mat-button-disabled.mat-button-disabled, body.theme-default .mat-raised-button.mat-primary.mat-button-disabled, body.theme-default .mat-raised-button.mat-accent.mat-button-disabled, body.theme-default .mat-raised-button.mat-warn.mat-button-disabled, body.theme-default .mat-raised-button.mat-button-disabled.mat-button-disabled, body.theme-default .mat-fab.mat-primary.mat-button-disabled, body.theme-default .mat-fab.mat-accent.mat-button-disabled, body.theme-default .mat-fab.mat-warn.mat-button-disabled, body.theme-default .mat-fab.mat-button-disabled.mat-button-disabled, body.theme-default .mat-mini-fab.mat-primary.mat-button-disabled, body.theme-default .mat-mini-fab.mat-accent.mat-button-disabled, body.theme-default .mat-mini-fab.mat-warn.mat-button-disabled, body.theme-default .mat-mini-fab.mat-button-disabled.mat-button-disabled {
+    background-color: rgba(0, 0, 0, 0.12) !important;
+    color: rgba(0, 0, 0, 0.26) !important;
+}
+.apps-icon{
+  height: auto !important;
+  width: 100% !important;
+  cursor: pointer;
+}
+.apps-title{
+  padding-top: 5px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+
+.mat-fab .mat-button-wrapper {
+    padding: 0px !important;
+    // display: inline-block;
+    // line-height: 24px;
+}
+app-shimmer-loader{
+    width:100% !important;
+}
+    container-3 {
+      scroll-behavior: smooth !important;
+    }
+
+    html , body {
+        scroll-behavior: smooth !important;
+      }

@@ -1,0 +1,40 @@
+:host {
+
+    .folded:not(.unfolded) & {
+
+        .nav-link {
+
+            > .nav-link-title,
+            > .nav-link-badge {
+                opacity: 0;
+                transition: opacity 200ms ease;
+            }
+      
+        }
+    }
+}
+.nav-link-icon{
+    svg{
+        width: 16px;
+        height: 16px;
+      *{
+        fill: #212121 !important;
+        stroke-width: 2px !important;
+      }
+    }
+}
+.nav-link.active{
+   .nav-link-icon{
+        svg {
+            width: 16px;
+            height: 16px;
+            *{
+            fill: #ffffff !important;
+            stroke: #ffffff !important;
+            stroke-width: 2px !important;
+        }
+        }
+        
+    }
+
+}

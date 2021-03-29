@@ -1,0 +1,18 @@
+.fixScrollBtn{
+    position:fixed;
+    bottom:15px;
+    right:15px;
+    z-index: 1;
+    
+}
+.fixScrollBtn .mat-button-wrapper {
+    padding:0px !important;
+}
+
+
+.fixScrollBtn .mat-button-wrapper{
+    padding:0px !important;
+
+}.fixScrollBtn > span {
+    padding:0px !important;
+}

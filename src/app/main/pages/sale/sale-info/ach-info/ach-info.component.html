@@ -1,0 +1,41 @@
+<section class="ach-info" [@fadeInOut]>
+    <form fxLayout="column" fxLayoutAlign="center stretch" name="Form" [formGroup]="achForm">
+
+        <mat-form-field appearance="outline" fxFlex.gt-sm="100" fxFlex.sm="100">
+            <mat-label>Account Holder Name</mat-label>
+            <input maxlength="26" matInput formControlName="AccountHolderName" required>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" fxFlex.gt-sm="100" fxFlex.sm="100">
+            <mat-label>Account Type </mat-label>
+            <mat-select formControlName="AccountHolderType" required>
+                <mat-option [value]="1">Checking</mat-option>
+                <mat-option [value]="2">Saving</mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" fxFlex.gt-sm="100" fxFlex.sm="100">
+            <mat-label>Routing Number</mat-label>
+            <input matInput formControlName="RoutingNumber" maxlength="9" minlength="9" required>
+            <mat-error>9 digits routing number is required!</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" fxFlex.gt-sm="100" fxFlex.sm="100">
+            <mat-label>Account Number</mat-label>
+            <input matInput formControlName="AccountNumber" maxlength="17" minlength="6" required>
+            <mat-error>6-17 digits account number is required!</mat-error>
+        </mat-form-field>
+
+        <div class="mx-auto mb-20">
+            <img src="../../../../../../assets/images/routing.png">
+        </div>
+
+        <div fxLayout="row" fxLayoutAlign="center">
+            <button fxFlex="100" mat-raised-button class="processBtn accent-alpha-bg"
+                [ngClass]="{'accent-fg': achForm.valid && !process}" [disabled]="achForm.invalid || process" (click)="payNow()">
+                Process
+            </button>
+        </div>
+
+    </form>
+</section>

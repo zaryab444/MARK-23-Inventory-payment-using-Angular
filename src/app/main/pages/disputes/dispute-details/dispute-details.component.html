@@ -1,0 +1,104 @@
+<section class="disputeDetails w-100-p">
+    <section fxLayout="column" fxLayoutAlign="start">
+        <h2>Dispute Details</h2>
+        <button 
+        [routerLink]="'/pages/report-manager/disputes'" 
+        style="margin-left:5px;width:110px;"
+         mat-button class="accent">
+        <mat-icon>arrow_back</mat-icon>
+        </button>
+
+<div fxLayout="row" fxLayoutAlign="start center"> 
+    <div ><h1>$10.00</h1> </div>
+    
+    <div class="mx-4" fxFlex="70">   <mat-chip-list><mat-chip class="warn">Need Response</mat-chip></mat-chip-list></div>
+<div fxLayout="row" fxLayoutGap="5px">
+    <button mat-raised-button  color="accent" (click)="openSlidePanel()"
+    >
+        Submit Evidence
+        </button>
+        <button mat-raised-button  color="accent" (click)="confirmDisputeDialog()"  >
+        Accept Dispute
+        </button>
+</div>
+
+</div>
+     
+        <mat-divider></mat-divider>
+        <div fxLayout="row" fxLayoutAlign="space-between " class="text-center">
+            <div fxLayout="column" fxFlex="24">
+                <h4>Date</h4>
+                <span>01/19/2021</span>
+            </div>
+            <mat-divider [vertical]="true" ></mat-divider>
+            <div fxLayout="column" fxFlex="24">
+                <h4>Customer</h4>
+                <span>Paynomix Customer</span>
+            </div>
+
+            <mat-divider [vertical]="true" ></mat-divider>
+
+            <div fxLayout="column" fxFlex="24">
+                <h4>Payment Method</h4>
+                <span>****  <mat-icon [svgIcon]="'visa'" ></mat-icon> </span>
+            </div>
+
+            <mat-divider [vertical]="true" ></mat-divider>
+
+            <div fxLayout="column" fxFlex="24">
+                <h4>Amount</h4>
+                <span>$10.00</span>
+            </div>
+        </div>
+        <mat-divider></mat-divider>
+    </section>
+<section fxLayout="column" fxLayoutAlign="start">
+    <h3><b>Timeline</b></h3>
+    <mat-divider></mat-divider>
+    <ng-template [ngIf]="items.length">
+    <horizontal-timeline [timelineElements]="items" [showContent]="true"></horizontal-timeline>
+    </ng-template>
+</section>
+
+
+
+    <section fxLayout="column" fxLayoutAlign="start">
+        <h3><b>Payment Details</b></h3>
+        <mat-divider></mat-divider>
+     
+        <div fxLayout="column" fxLayoutAlign="space-between " fxLayoutGap="8px" class="mt-20">
+
+        <div fxLayout="row">
+            <span fxFlex="25">Statement descriptor </span>
+            <span fxFlex>www.paynomix.com </span>
+        </div>
+        <div fxLayout="row">
+            <span fxFlex="25">Amount </span>
+            <span fxFlex>$10.00 </span>
+        </div>
+        <div fxLayout="row">
+            <span fxFlex="25">Fee </span>
+            <span fxFlex>0.00$ </span>
+        </div>
+        <div fxLayout="row">
+            <span fxFlex="25">Status </span>
+            <span fxFlex>Disputed </span>
+        </div>
+        <div fxLayout="row">
+            <span fxFlex="25">Transfer destination </span>
+            <span fxFlex>acc_412sad1212f144212 </span>
+        </div>
+        <div fxLayout="row">
+            <span fxFlex="25">Transfer  </span>
+            <span fxFlex>td_412sad1212f144212</span>
+        </div>
+        <div fxLayout="row">
+            <span fxFlex="25">Colleted Fee</span>
+            <span fxFlex>$0.50 </span>
+        </div>
+   
+
+        </div>
+
+    </section>
+</section>

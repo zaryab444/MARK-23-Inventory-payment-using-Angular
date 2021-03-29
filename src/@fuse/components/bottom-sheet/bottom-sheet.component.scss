@@ -1,0 +1,79 @@
+@import "../../../assets/variables/_variables";
+.bottomSheet{
+    .overlay{
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        top: 0;
+        background: rgba(9, 30, 66, 0.54);
+    }
+    .sheet-body{
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        padding: 15px;
+        background: #fdfcfc;
+        .close-button{
+            position: absolute;
+            right: 0;
+            top: 0;
+        }
+
+        .search{
+            padding: 5px;
+        }
+        .sheet-content{
+            max-height: 200px;
+            overflow-y: auto;
+            .item{
+                margin: 2px 0;
+                cursor: pointer;
+                padding: 5px;
+                .circle{
+                    width: 30px;
+                    height: 30px;
+                    min-width: 30px;
+                    border-radius: 100%;
+                    border: 1px solid $fgColor;
+                    color: $fgColor;
+                    display: inline-flex;
+                    margin-right: 15px;
+                    align-items: center;
+                    justify-content: center;
+                    font-weight: 500;
+                }
+                &:hover{
+                    background: rgba(0, 0, 0, 0.12);
+                    border-radius: 4px;
+                    .circle{
+                        background-color: #fff;
+                    }
+                }
+                &.selected{
+                    @extend :hover;
+                    color: #fff;
+                    background: $fgColor;
+                }
+              
+            }
+
+        }
+    }
+    .pickup-button{
+        border-radius: 25px;
+        box-shadow: 0 3px 6px rgba(0, 0, 0, .16), 0 1px 2px rgba(0, 0, 0, .23);
+        padding: 3px 15px;
+        position: absolute;
+        right: 15px;
+        bottom: 15px;
+        mat-icon{
+            font-size: 1.3em;
+        }
+    }
+}
+.mat-tooltip{
+    margin: 0 !important;
+    margin-bottom: -5px !important;
+}

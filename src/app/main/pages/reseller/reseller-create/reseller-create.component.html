@@ -1,0 +1,12 @@
+<section class="createReseller w-100-p">
+    <section fxLayout="row" fxLayoutAlign="space-between center">
+        <h2>Add Reseller</h2>
+        <div>
+            <button mat-icon-button (click)= "closeSlidingPanel()" >
+            <mat-icon aria-label="Close">close</mat-icon>
+            </button>
+        </div>
+    </section>
+    <hr />
+    <app-reseller-form (submitForm)="createReseller($event)"></app-reseller-form>
+</section>

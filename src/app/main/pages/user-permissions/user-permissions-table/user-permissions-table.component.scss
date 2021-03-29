@@ -1,0 +1,95 @@
+.userPermissionTable{
+    overflow: hidden !important;   
+    // max-height: unset !important;
+            // table{
+            //     thead{
+            //             tr{
+            //                 th{
+            //                     z-index: 101 !important;
+            //                     &:nth-child(2){
+            //                     z-index: 102 !important;
+            //                         mat-checkbox{
+            //                         vertical-align: super;
+            //                         }
+            //                     }
+            //                     &:nth-last-child(2){
+            //                         min-width: 150px;
+            //                     }
+                               
+            //                 }
+            //             }
+            
+            //     }
+            //     tbody{
+            //         tr{
+            //             &.expanded {
+            //                 & + .refund-row{
+            //                     min-height: auto;
+            //                     overflow: visible;
+            //                 }
+            //             }
+            //             &.expandedDetail {
+            //                 & + * + .detail-row{
+            //                     min-height: auto;
+            //                     display: block !important;
+            //                     overflow: visible;
+            //                 }
+            //             }
+            //             // &:not(.expanded){
+            //             //     & + .refund-row{
+            //             //        display: none;
+            //             //     }
+            //             // }
+            //             // &:not(.expandedDetail){
+            //             //     & + * + .detail-row{
+            //             //         display: none;
+            //             //      }   
+            //             // }
+            //             td{
+            //                 &:nth-child(2){
+            //                     mat-checkbox{
+            //                         vertical-align: super;
+            //                     }
+            //                 }
+            //                 &:nth-last-child(2){
+            //                     min-width: 150px;
+            //                 }
+            //             }
+                        
+            //         }
+            //     }
+            // }
+            // .expandedRefundDetail{
+            //     table{
+            //         thead{
+            //             tr{
+            //                 th{
+            //                     z-index: 100 !important;
+            //                     &:nth-child(2){
+            //                     z-index: 100 !important;
+            //                     }
+            //                 }
+            //             }
+            
+            //     }  
+            //     }
+            // }
+}
+table {
+    tbody {
+        tr{
+            &.expanded + .detail-row{
+                min-height: auto;
+                visibility: visible !important;
+            }
+            &.detail-row{
+                min-height: auto;
+                height: auto;        
+            }
+    }
+}
+}
+// .detail-row {
+//     border-bottom-width: 1px;
+//     border-bottom-style: solid;
+// }

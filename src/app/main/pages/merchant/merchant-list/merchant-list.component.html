@@ -1,0 +1,23 @@
+<section class="merchantList w-100-p">
+    <section fxLayout="row" fxLayoutAlign="space-between center">
+      <h2>Merchants</h2>
+         <div class="searchheaders">
+            <div [matMenuTriggerFor]="childComponentMenu?.menu">
+              <button mat-icon-button>
+                  <mat-icon>search</mat-icon>
+              </button>
+              <span>Search Merchant</span>
+            </div>
+            <app-advanced-search [page]="'merchantPage'" [data]="MerchantSearchField" (submitForm)="searchmerchant($event)" #childComponentMenu="menuInOtherComponent" ></app-advanced-search>
+            
+          </div>
+      </section>
+    <hr />
+    <div class="my-20" fxLayout="row" fxLayoutAlign="end">
+      <button mat-raised-button color="accent" [routerLink]="'/pages/merchant/merchant-create'">
+            <mat-icon>add</mat-icon>
+            ADD NEW MERCHANT
+        </button>
+    </div> 
+    <ng-template #renderingContainer></ng-template>
+  </section>
